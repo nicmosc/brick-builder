@@ -13,6 +13,8 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 let objects = [];
 let raycaster, mouse;
+let drag = false;
+let isShiftDown = false;
 
 
 init();
@@ -46,15 +48,17 @@ function setUpScene() {
 function attachEvents() {
   document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-  // document.addEventListener( 'keydown', onDocumentKeyDown, false );
-  // document.addEventListener( 'keyup', onDocumentKeyUp, false );
+  document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+  document.addEventListener( 'keydown', onDocumentKeyDown, false );
+  document.addEventListener( 'keyup', onDocumentKeyUp, false );
 
-  // window.addEventListener( 'resize', onWindowResize, false );
+  window.addEventListener( 'resize', onWindowResize, false );
 }
 
 
 function onDocumentMouseMove( event ) {
   event.preventDefault();
+  drag = true;
   mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
   raycaster.setFromCamera( mouse, camera );
   const intersects = raycaster.intersectObjects( objects );
@@ -67,22 +71,58 @@ function onDocumentMouseMove( event ) {
 
 
 function onDocumentMouseDown( event ) {
+  drag = false;
+}
+
+
+function onDocumentMouseUp(event) {
   event.preventDefault();
-  mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
-  raycaster.setFromCamera( mouse, camera );
-  var intersects = raycaster.intersectObjects( objects );
-  if ( intersects.length > 0 ) {
-    var intersect = intersects[ 0 ];
-    // delete cube
-    // if ( isShiftDown ) {
-    //   deleteCube(intersect);
-    // // create cube
-    // } else {
-      // var randomCol = colors[Math.floor(Math.random()*colors.length)];
-      const brick = Brick(intersect, '0xb9140a');
-      scene.add(brick);
-      objects.push( brick );
-    // }
+  if (! drag) {
+    mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
+    raycaster.setFromCamera( mouse, camera );
+    var intersects = raycaster.intersectObjects( objects );
+    if ( intersects.length > 0 ) {
+      var intersect = intersects[ 0 ];
+      // delete cube
+      if ( isShiftDown ) {
+        deleteCube(intersect);
+      // create cube
+      } else {
+        // var randomCol = colors[Math.floor(Math.random()*colors.length)];
+        const brick = Brick(intersect);
+        scene.add(brick);
+        objects.push( brick );
+      }
+    }
+  }
+}
+
+
+function deleteCube(intersect) {
+  if ( intersect.object != plane ) {
+    scene.remove( intersect.object );
+    objects.splice( objects.indexOf( intersect.object ), 1 );
+  }
+}
+
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+
+function onDocumentKeyDown( event ) {
+  switch( event.keyCode ) {
+    case 16: isShiftDown = true; break;
+  }
+}
+
+
+function onDocumentKeyUp( event ) {
+  switch ( event.keyCode ) {
+    case 16: isShiftDown = false; break;
   }
 }
 

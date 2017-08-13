@@ -51,7 +51,9 @@ function createCube(material) {
 
 
 export const Brick = (intersect, color) => {
-  const cubeMaterial = new THREE.MeshLambertMaterial( { color: parseInt(color, 16 ) } );
+  const cubeMaterial = new THREE.MeshLambertMaterial({
+    color: parseInt(color || colors[Math.floor(Math.random()*colors.length)], 16),
+  });
   const brick = createCube(cubeMaterial);
 
   brick.position.copy( intersect.point ).add( intersect.face.normal );
