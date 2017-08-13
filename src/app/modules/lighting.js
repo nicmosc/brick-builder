@@ -3,7 +3,7 @@ const Lighting = () => {
   light.position.set( 1000, 1500, 500 );
   light.castShadow = true;
   light.shadow = new THREE.LightShadow( new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000 ) );
-  light.shadow.bias = - 0.00022;
+  light.shadow.bias = - 0.0000022;
   light.shadow.mapSize.width = 4096;
   light.shadow.mapSize.height = 4096;
   return light;
