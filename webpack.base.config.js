@@ -3,15 +3,12 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const jsDirs = [
-  path.resolve(__dirname, 'src', 'static'),
-  path.resolve(__dirname, 'src', 'static', 'js'),
+  path.resolve(__dirname, 'src'),
 ];
-
-
-process.traceDeprecation = true;
 
 
 module.exports = {
@@ -20,12 +17,21 @@ module.exports = {
     modules: [...jsDirs, 'node_modules'],
   },
   entry: {
-    demo: [ './src/static/js/main.js' ],
+    builder: [ './src/main.js' ],
   },
   externals: {
     jquery: 'jQuery',
   },
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    // publicPath: 'bundle',
+    filename: '[name].bundle.js',
+  },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Lego Builder',
+      template: path.resolve(__dirname, 'index.html'),
+    }),
     new ExtractTextPlugin('styles.css'),
   ],
   module: {
@@ -148,21 +154,21 @@ module.exports = {
           name: '/[name].[ext]'
         }
       }],
-    }, {
-      test: /\.html$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: '../index.html'
-        }
-      }, {
-        loader: 'extract-loader'
-      }, {
-        loader: 'html-loader',
-        options: {
-          minimize: false,
-        }
-      }],
+    // }, {
+    //   test: /\.html$/,
+    //   use: [{
+    //     loader: 'file-loader',
+    //     options: {
+    //       name: '../index.html'
+    //     }
+    //   }, {
+    //     loader: 'extract-loader'
+    //   }, {
+    //     loader: 'html-loader',
+    //     options: {
+    //       minimize: false,
+    //     }
+    //   }],
     }],
   },
 };
