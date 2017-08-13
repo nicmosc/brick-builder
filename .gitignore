@@ -1,0 +1,7 @@
+node_modules
+dist
+npm-debug.log
+*.hot-update.js
+*.hot-update.json
+
+.DS_Store
