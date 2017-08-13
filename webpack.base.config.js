@@ -153,7 +153,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: '../404.html'
+          name: '../index.html'
         }
       }, {
         loader: 'extract-loader'
