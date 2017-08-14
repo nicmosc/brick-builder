@@ -27,18 +27,18 @@ function createCube(material) {
   mesh.receiveShadow = true;
 
   const positions = [
-    {x: 12, y: 25, z: - 12},
-    {x: - 12, y: 25, z: 12},
-    {x: - 12, y: 25, z: - 12},
-    {x: 12, y: 25, z: 12}
+    {x: 13, y: 25, z: - 13},
+    {x: - 13, y: 25, z: 13},
+    {x: - 13, y: 25, z: - 13},
+    {x: 13, y: 25, z: 13}
   ];
 
   for (var i = 0; i < positions.length; i++) {
     const cylinder = new THREE.Mesh(cylinderGeo, material);
 
-    cylinder.position.x = positions[i].x + 2;
+    cylinder.position.x = positions[i].x;
     cylinder.position.y = positions[i].y;
-    cylinder.position.z = positions[i].z + 2;
+    cylinder.position.z = positions[i].z;
 
     cylinder.castShadow = true;
     cylinder.receiveShadow = true;

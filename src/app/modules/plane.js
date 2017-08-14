@@ -13,7 +13,7 @@ export const plane = Plane();
 
 
 const Grid = () => {
-  const grid = new THREE.GridHelper( 3000, 120 );
+  const grid = new THREE.GridHelper( 3000, 240 );
   return grid;
 }
 
