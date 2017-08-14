@@ -5,10 +5,10 @@ import { lighting, ambientLighting } from './modules/lighting';
 import { renderer, scene, camera, controls } from './modules/essentials';
 import { rollOverMesh, Brick } from './modules/bricks';
 import { plane, grid } from './modules/plane';
+import { width, height, depth } from './utils/constants';
 
 
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
 
 
 let objects = [];
@@ -65,7 +65,9 @@ function onDocumentMouseMove( event ) {
   if ( intersects.length > 0 ) {
     const intersect = intersects[ 0 ];
     rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
-    rollOverMesh.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+    rollOverMesh.position.divide( new THREE.Vector3(width, height, depth) ).floor()
+      .multiply( new THREE.Vector3( width, height, depth ) )
+      .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
   }
 }
 

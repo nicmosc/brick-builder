@@ -39,8 +39,10 @@ export const camera = Camera();
 
 const Controls = () => {
   const controls = new OrbitControls( camera, renderer.domElement );
+  console.log(controls);
 	controls.enableDamping = true;
-	controls.dampingFactor = 0.25;
+	controls.dampingFactor = 0.15;
+  controls.rotateSpeed = 0.3;
   controls.maxPolarAngle = Math.PI/2;
   controls.minDistance = 200;
   controls.maxDistance = 6500;

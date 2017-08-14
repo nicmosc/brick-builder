@@ -1,12 +1,12 @@
 import { mergeMeshes } from '../utils';
+import { width, height, depth } from '../utils/constants';
 
 
 const colors = ['0xb9140a', '0x1e6914', '0x1a3fcc', '0xd49417'];
-const dimensions = 50;
 
 
 const RollOverMesh = () => {
-  const rollOverGeo = new THREE.EdgesGeometry( new THREE.BoxGeometry( 50, 50, 50 ) ); // or WireframeGeometry( geometry )
+  const rollOverGeo = new THREE.EdgesGeometry( new THREE.BoxGeometry( width, height, depth ) ); // or WireframeGeometry( geometry )
   const mat = new THREE.LineBasicMaterial( { color: 0x777777, linewidth: 2 } );
   return new THREE.LineSegments( rollOverGeo, mat );
 }
@@ -18,7 +18,7 @@ export const rollOverMesh = RollOverMesh();
 
 function createCube(material) {
   let meshes = [];
-  const cubeGeo = new THREE.BoxGeometry( dimensions, dimensions, dimensions );
+  const cubeGeo = new THREE.BoxGeometry( width, height, depth );
   const cylinderGeo = new THREE.CylinderGeometry( 7, 7, 7, 20);
 
   const mesh = new THREE.Mesh(cubeGeo, material);
@@ -27,10 +27,10 @@ function createCube(material) {
   mesh.receiveShadow = true;
 
   const positions = [
-    {x: 13, y: 25, z: - 13},
-    {x: - 13, y: 25, z: 13},
-    {x: - 13, y: 25, z: - 13},
-    {x: 13, y: 25, z: 13}
+    {x: 13, y: 25 / 1.5, z: - 13},
+    {x: - 13, y: 25 / 1.5, z: 13},
+    {x: - 13, y: 25 / 1.5, z: - 13},
+    {x: 13, y: 25 / 1.5, z: 13}
   ];
 
   for (var i = 0; i < positions.length; i++) {
@@ -57,7 +57,9 @@ export const Brick = (intersect, color) => {
   const brick = createCube(cubeMaterial);
 
   brick.position.copy( intersect.point ).add( intersect.face.normal );
-  brick.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+  brick.position.divide( new THREE.Vector3(width, height, depth) ).floor()
+    .multiply( new THREE.Vector3(width, height, depth) )
+    .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
   brick.castShadow = true;
   brick.receiveShadow = true;
 
