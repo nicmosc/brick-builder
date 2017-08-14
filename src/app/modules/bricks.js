@@ -57,8 +57,8 @@ export const Brick = (intersect, color) => {
   const brick = createCube(cubeMaterial);
 
   brick.position.copy( intersect.point ).add( intersect.face.normal );
-  brick.position.divide( new THREE.Vector3(width, height, depth) ).floor()
-    .multiply( new THREE.Vector3(width, height, depth) )
+  brick.position.divide( new THREE.Vector3(width / 2, height, depth / 2) ).floor()
+    .multiply( new THREE.Vector3(width / 2, height, depth / 2) )
     .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
   brick.castShadow = true;
   brick.receiveShadow = true;

@@ -6,15 +6,17 @@ import { renderer, scene, camera, controls } from './modules/essentials';
 import { rollOverMesh, Brick } from './modules/bricks';
 import { plane, grid } from './modules/plane';
 import { width, height, depth } from './utils/constants';
+import { collisonXYZ } from './utils';
 
 
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 
 let objects = [];
-let raycaster, mouse;
+let raycaster, mouse, axisHelper;
 let drag = false;
 let isShiftDown = false;
+let intersection = false;
 
 
 init();
@@ -27,6 +29,9 @@ function init() {
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
 
+  // axisHelper = new THREE.AxisHelper( 100 );
+  // axisHelper.position.y = 5;
+
   setUpScene();
   attachEvents();
   animate();
@@ -34,6 +39,8 @@ function init() {
 
 
 function setUpScene() {
+  // scene.add(axisHelper);
+
   scene.add(lighting);
   scene.add(ambientLighting);
 
@@ -59,14 +66,15 @@ function attachEvents() {
 function onDocumentMouseMove( event ) {
   event.preventDefault();
   drag = true;
-  mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
+  mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
   raycaster.setFromCamera( mouse, camera );
-  const intersects = raycaster.intersectObjects( objects );
-  if ( intersects.length > 0 ) {
+  const intersects = raycaster.intersectObjects( objects, true );
+  if ( intersects.length > 0 && ! isShiftDown) {
     const intersect = intersects[ 0 ];
+
     rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
-    rollOverMesh.position.divide( new THREE.Vector3(width, height, depth) ).floor()
-      .multiply( new THREE.Vector3( width, height, depth ) )
+    rollOverMesh.position.divide( new THREE.Vector3(width / 2, height, depth / 2) ).floor()
+      .multiply( new THREE.Vector3( width / 2, height, depth / 2 ) )
       .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
   }
 }
@@ -90,10 +98,27 @@ function onDocumentMouseUp(event) {
         deleteCube(intersect);
       // create cube
       } else {
-        // var randomCol = colors[Math.floor(Math.random()*colors.length)];
-        const brick = Brick(intersect);
-        scene.add(brick);
-        objects.push( brick );
+        let canCreate = true;
+        const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
+        const meshBoundingBox = new THREE.Box3().setFromObject(rollOverMesh);
+        for (var i = 0; i < bricks.length; i++) {
+          const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
+          const collision = meshBoundingBox.intersectsBox(brickBoundingBox);
+          if (collision) {
+            const dx = Math.abs(brickBoundingBox.max.x - meshBoundingBox.max.x);
+            const dz = Math.abs(brickBoundingBox.max.z - meshBoundingBox.max.z);
+            const yIntsersect = brickBoundingBox.max.y - 9 > meshBoundingBox.min.y;
+            if (yIntsersect && dx !== width && dz !== depth) {
+              canCreate = false;
+              break;
+            }
+          }
+        }
+        if (canCreate) {
+          const brick = Brick(intersect);
+          scene.add(brick);
+          objects.push( brick );
+        }
       }
     }
   }
@@ -117,14 +142,20 @@ function onWindowResize() {
 
 function onDocumentKeyDown( event ) {
   switch( event.keyCode ) {
-    case 16: isShiftDown = true; break;
+    case 16:
+      isShiftDown = true;
+      rollOverMesh.visible = false;
+      break;
   }
 }
 
 
 function onDocumentKeyUp( event ) {
   switch ( event.keyCode ) {
-    case 16: isShiftDown = false; break;
+    case 16:
+      isShiftDown = false;
+      rollOverMesh.visible = true;
+      break;
   }
 }
 

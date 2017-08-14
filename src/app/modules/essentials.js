@@ -9,7 +9,7 @@ const Renderer = () => {
 
   renderer.gammaInput = true;
   renderer.gammaOutput = true;
-  renderer.shadowMapEnabled = true;
+  renderer.shadowMap.enabled = true;
   renderer.shadowMapSoft = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
 
@@ -39,7 +39,6 @@ export const camera = Camera();
 
 const Controls = () => {
   const controls = new OrbitControls( camera, renderer.domElement );
-  console.log(controls);
 	controls.enableDamping = true;
 	controls.dampingFactor = 0.15;
   controls.rotateSpeed = 0.3;
