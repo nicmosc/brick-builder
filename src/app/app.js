@@ -23,6 +23,8 @@ let drag = false;
 let isShiftDown = false;
 let intersection = false;
 
+let color = 0xb9140a;
+
 
 init();
 
@@ -33,7 +35,7 @@ function init() {
   // env
   initEnv();
   // helpers
-  rollOverBrick = new RollOverBrick();
+  rollOverBrick = new RollOverBrick(color);
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
   // axisHelper = new THREE.AxisHelper( 100 );
