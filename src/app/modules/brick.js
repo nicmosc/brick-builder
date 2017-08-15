@@ -1,9 +1,11 @@
 import { mergeMeshes } from '../utils';
 import { width, height, depth, colors } from '../utils/constants';
 
+const color = colors[0];
+
 
 export class Brick extends THREE.Mesh {
-  constructor(intersect, color=null) {
+  constructor(intersect) {
     const cubeMaterial = new THREE.MeshLambertMaterial({
       color: parseInt(color || colors[Math.floor(Math.random()*colors.length)], 16),
     });
