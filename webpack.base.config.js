@@ -7,7 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const jsDirs = [
-  path.resolve(__dirname, 'src'),
+  path.resolve(__dirname, 'src/app'),
+  path.resolve(__dirname, 'src/engine'),
 ];
 
 
@@ -35,140 +36,150 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
   ],
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader',
-      }]
-    }, {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
+    rules: [
+      {
+        test: /\.jsx?$/,
+        include: jsDirs,
         use: [
           {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader',
+            loader: 'babel-loader',
             options: {
-              plugins: () => [ autoprefixer, cssnano({ safe: true }) ],
-            }
+              presets: [ 'react', ['latest', { 'es2015': { 'modules': false } }], 'stage-0' ],
+              plugins: [ 'react-hot-loader/babel' ],
+            },
           }
         ],
-      }),
-    }, {
-      test: /\.less$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [ autoprefixer, cssnano({ safe: true }) ],
+      },
+      {
+        test: /\.css/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
             },
-          },
-          {
-            loader: 'less-loader',
-          },
-        ],
-      }),
-    }, {
-      test: /\.woff([^2].*)?$/,
-      use: [{
-        loader: 'file-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: () => [ autoprefixer, cssnano({ safe: true }) ],
+              },
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: () => [ autoprefixer, cssnano({ safe: true }) ],
+              },
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.woff([^2].*)?$/,
+        use: [{
+          loader: 'file-loader',
 
-        options: {
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.woff2(.*)?$/,
-      use: [{
-        loader: 'file-loader',
+          options: {
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.woff2(.*)?$/,
+        use: [{
+          loader: 'file-loader',
 
-        options: {
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.ttf(.*)?$/,
-      use: [{
-        loader: 'file-loader',
+          options: {
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.ttf(.*)?$/,
+        use: [{
+          loader: 'file-loader',
 
-        options: {
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.eot(.*)?$/,
-      use: [{
-        loader: 'file-loader',
+          options: {
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.eot(.*)?$/,
+        use: [{
+          loader: 'file-loader',
 
-        options: {
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.otf$/,
-      use: [{
-        loader: 'file-loader',
+          options: {
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.otf$/,
+        use: [{
+          loader: 'file-loader',
 
-        options: {
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.svg(.*)?$/,
-      use: [{
-        loader: 'url-loader',
+          options: {
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.svg(.*)?$/,
+        use: [{
+          loader: 'url-loader',
 
-        options: {
-          limit: 10000,
-          mimetype: 'image/svg+xml',
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.jpg$/,
-      use: [{
-        loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimetype: 'image/svg+xml',
+            name: '/[name].[ext]'
+          }
+        }],
+      }, {
+        test: /\.jpg$/,
+        use: [{
+          loader: 'url-loader',
 
-        options: {
-          limit: 10000,
-          mimetype: 'image/jpg',
-          name: '/[name].[ext]'
-        }
-      }],
-    }, {
-      test: /\.png$/,
-      use: [{
-        loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimetype: 'image/jpg',
+            name: '/[name].[ext]'
+          }
+        }],
+      },
+      {
+        test: /\.png$/,
+        use: [{
+          loader: 'url-loader',
 
-        options: {
-          limit: 10000,
-          mimetype: 'image/png',
-          name: '/[name].[ext]'
-        }
-      }],
-    // }, {
-    //   test: /\.html$/,
-    //   use: [{
-    //     loader: 'file-loader',
-    //     options: {
-    //       name: '../index.html'
-    //     }
-    //   }, {
-    //     loader: 'extract-loader'
-    //   }, {
-    //     loader: 'html-loader',
-    //     options: {
-    //       minimize: false,
-    //     }
-    //   }],
-    }],
+          options: {
+            limit: 10000,
+            mimetype: 'image/png',
+            name: '/[name].[ext]'
+          }
+        }],
+      }
+    ],
   },
 };
