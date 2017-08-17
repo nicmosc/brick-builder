@@ -3,5 +3,6 @@ dist
 npm-debug.log
 *.hot-update.js
 *.hot-update.json
+temp
 
 .DS_Store

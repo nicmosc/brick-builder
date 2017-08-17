@@ -2,6 +2,9 @@ import React from 'react';
 
 
 class Builder extends React.Component {
+  componentDidMount() {
+    // console.log($);
+  }
   render() {
     return (
       <div className="Builder">
