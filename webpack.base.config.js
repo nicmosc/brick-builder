@@ -7,8 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const jsDirs = [
-  path.resolve(__dirname, 'src/app'),
-  path.resolve(__dirname, 'src/engine'),
+  path.resolve(__dirname, 'app'),
 ];
 
 
@@ -18,7 +17,7 @@ module.exports = {
     modules: [...jsDirs, 'node_modules'],
   },
   entry: {
-    builder: [ './src/main.js' ],
+    builder: [ './app/app.js' ],
   },
   externals: {
     jquery: 'jQuery',

@@ -20,7 +20,6 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "chokidar": "^1.7.0",
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
     "extract-loader": "^0.1.0",
@@ -46,10 +45,9 @@
   },
   "dependencies": {
     "global": "^4.3.2",
-    "inert": "^4.2.0",
     "jquery": "^3.2.1",
-    "location-bar": "^3.0.1",
     "normalize.css": "^7.0.0",
+    "pubsub-js": "^1.5.7",
     "rimraf": "^2.6.1",
     "three-orbit-controls": "^82.1.0"
   }
