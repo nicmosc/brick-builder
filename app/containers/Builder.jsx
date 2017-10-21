@@ -15,7 +15,7 @@ class Builder extends React.Component {
     return (
       <div className={styles.builder}>
         <Scene />
-        <h1 style={{position: 'absolute', top: 0, left: 0}}>Builder</h1>
+        <button style={{position: 'absolute', top: 0, left: 0}}>Builder</button>
       </div>
     );
   }
