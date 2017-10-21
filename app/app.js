@@ -7,7 +7,7 @@ import Builder from 'containers/Builder';
 
 import setupStore from 'store';
 
-import "./styles/app";
+import 'styles/app';
 
 
 function enableHMR(fn) {

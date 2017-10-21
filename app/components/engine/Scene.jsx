@@ -17,6 +17,8 @@ import {
 
 import { width, height, depth } from 'utils/constants';
 
+import styles from 'styles/components/scene';
+
 
 // placeholder
 let color = 0xb9140a;
@@ -236,7 +238,7 @@ class Scene extends React.Component {
   render() {
     return(
       <div>
-        <div ref={(mount) => { this.mount = mount }} />
+        <div className={styles.scene} ref={(mount) => { this.mount = mount }} />
         <Monitor />
       </div>
     );

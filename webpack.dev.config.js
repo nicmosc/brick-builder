@@ -8,8 +8,8 @@ module.exports = Object.assign({}, webpackBaseConfig, {
   devtool: 'inline-source-map',
   entry: Object.keys(webpackBaseConfig.entry).reduce((result, k) => {
     result[k] = [
-      'react-hot-loader/patch',
-      'webpack/hot/only-dev-server',
+      // 'react-hot-loader/patch',
+      // 'webpack/hot/only-dev-server',
       ...webpackBaseConfig.entry[k],
     ];
     return result;
@@ -19,7 +19,7 @@ module.exports = Object.assign({}, webpackBaseConfig, {
   }),
   plugins: [
     ...webpackBaseConfig.plugins,
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
@@ -29,8 +29,8 @@ module.exports = Object.assign({}, webpackBaseConfig, {
    devServer: {
     host: '0.0.0.0',
     port: '4000',
-    inline: true,
-    hot: true,
+    // inline: true,
+    // hot: true,
     stats: {
       assets: true,
       colors: true,
