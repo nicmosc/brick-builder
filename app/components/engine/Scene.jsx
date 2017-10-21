@@ -4,6 +4,7 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 
 import Detector from 'utils/threejs/detector';
 import Monitor from 'components/engine/Monitor';
+import Brick from 'components/engine/Brick';
 import { RollOverBrick } from 'components/engine/Helpers';
 import {
   PerspectiveCamera,
@@ -25,7 +26,6 @@ class Scene extends React.Component {
   state = {
     drag: false,
     isShiftDown: false,
-    intersection: false,
     objects: [],
   }
 
@@ -76,6 +76,7 @@ class Scene extends React.Component {
     this.scene.add(ambientLight);
 
     const plane = new Plane(3000);
+    this.plane = plane;
     this.scene.add(plane);
 
     const grid = new THREE.GridHelper( 3000, 240 );
@@ -88,6 +89,7 @@ class Scene extends React.Component {
 
   _initUtils() {
     const rollOverBrick = new RollOverBrick(color);
+    this.scene.add(rollOverBrick);
     this.rollOverBrick = rollOverBrick;
     const raycaster = new THREE.Raycaster();
     this.raycaster = raycaster;
@@ -96,11 +98,11 @@ class Scene extends React.Component {
   }
 
   _setEventListeners() {
-    document.addEventListener( 'mousemove', (event) => this._onDocumentMouseMove(event, this), false );
-    // document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-    // document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-    // document.addEventListener( 'keydown', onDocumentKeyDown, false );
-    // document.addEventListener( 'keyup', onDocumentKeyUp, false );
+    document.addEventListener( 'mousemove', (event) => this._onMouseMove(event, this), false );
+    document.addEventListener( 'mousedown', (event) => this._onMouseDown(event), false );
+    document.addEventListener( 'mouseup', (event) => this._onMouseUp(event, this), false );
+    document.addEventListener( 'keydown', (event) => this._onKeyDown(event, this), false );
+    document.addEventListener( 'keyup', (event) => this._onKeyUp(event, this), false );
     window.addEventListener('resize', (event) => this._onWindowResize(event, this), false);
   }
 
@@ -110,10 +112,11 @@ class Scene extends React.Component {
     scene.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
-  _onDocumentMouseMove(event, scene) {
+  _onMouseMove(event, scene) {
     const { isShiftDown, objects } = this.state;
     event.preventDefault();
     const drag = true;
+    this.setState({ drag });
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
     const intersects = scene.raycaster.intersectObjects( objects, true );
@@ -124,11 +127,88 @@ class Scene extends React.Component {
         .multiply( new THREE.Vector3( width / 2, height, depth / 2 ) )
         .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
     }
+  }
+
+  _onMouseDown( event ) {
     this.setState({
-      drag,
+      drag: false,
     });
   }
 
+  _onMouseUp(event, scene) {
+    const { drag, objects, isShiftDown } = this.state;
+    event.preventDefault();
+    if (! drag) {
+      scene.mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
+      scene.raycaster.setFromCamera( scene.mouse, scene.camera );
+      const intersects = scene.raycaster.intersectObjects( objects );
+      if ( intersects.length > 0 ) {
+        const intersect = intersects[ 0 ];
+        // delete cube
+        if ( isShiftDown ) {
+          this._deleteCube(intersect);
+        // create cube
+        } else {
+          let canCreate = true;
+          const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
+          const meshBoundingBox = new THREE.Box3().setFromObject(scene.rollOverBrick);
+          for (var i = 0; i < bricks.length; i++) {
+            const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
+            const collision = meshBoundingBox.intersectsBox(brickBoundingBox);
+            if (collision) {
+              const dx = Math.abs(brickBoundingBox.max.x - meshBoundingBox.max.x);
+              const dz = Math.abs(brickBoundingBox.max.z - meshBoundingBox.max.z);
+              const yIntsersect = brickBoundingBox.max.y - 9 > meshBoundingBox.min.y;
+              if (yIntsersect && dx !== width && dz !== depth) {
+                canCreate = false;
+                break;
+              }
+            }
+          }
+          if (canCreate) {
+            const brick = new Brick(intersect);
+            this.scene.add(brick);
+            this.setState({
+              objects: [ ...objects, brick],
+            });
+          }
+        }
+      }
+    }
+  }
+
+  _deleteCube(intersect) {
+    const { objects } = this.state;
+    if (intersect.object != this.plane) {
+      this.scene.remove(intersect.object);
+      // fix below
+      this.setState({
+        objects: objects.filter((o) => o !== intersect.object),
+      });
+    }
+  }
+
+  _onKeyDown(event, scene) {
+    switch(event.keyCode) {
+      case 16:
+        scene.setState({
+          isShiftDown: true,
+        });
+        scene.rollOverBrick.visible = false;
+        break;
+    }
+  }
+
+  _onKeyUp(event, scene ) {
+    switch (event.keyCode) {
+      case 16:
+        scene.setState({
+          isShiftDown: false,
+        });
+        scene.rollOverBrick.visible = true;
+        break;
+    }
+  }
 
   _start() {
     if (!this.frameId) {
