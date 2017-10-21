@@ -1,7 +1,7 @@
 {
-  "name": "lego-builder",
+  "name": "brick-builder",
   "version": "0.1.0",
-  "description": "None for now",
+  "description": "React based brick builder",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf docs/",
