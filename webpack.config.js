@@ -8,8 +8,8 @@ const packageJson = require('./package.json');
 module.exports = Object.assign({}, webpackBaseConfig, {
   devtool: 'source-map',
   output: Object.assign({}, webpackBaseConfig.output, {
-    path: path.resolve(__dirname, 'docs', 'bundle'),
-    publicPath: '/',
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: '',
     sourceMapFilename: "[name].bundle.js.map",
     filename: '[name].bundle.js',
   }),
