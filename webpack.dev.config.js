@@ -41,7 +41,7 @@ module.exports = Object.assign({}, webpackBaseConfig, {
       chunkModules: false,
     },
     historyApiFallback: true,
-    contentBase: 'server',
+    contentBase: 'assets',
     publicPath: '/',
     quiet: false,
     headers: {

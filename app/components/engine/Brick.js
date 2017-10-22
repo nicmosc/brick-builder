@@ -6,8 +6,10 @@ const color = colors[0];
 
 export default class Brick extends THREE.Mesh {
   constructor(intersect) {
-    const cubeMaterial = new THREE.MeshLambertMaterial({
+    const cubeMaterial = new THREE.MeshPhongMaterial({
       color: parseInt(color || colors[Math.floor(Math.random()*colors.length)], 16),
+      specular: 0x482626,
+      shininess: 5,
     });
     const props = createMesh(cubeMaterial);
     super(...props);

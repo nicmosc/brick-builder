@@ -77,11 +77,16 @@ class Scene extends React.Component {
     const ambientLight = new AmbientLight(0x606060);
     this.scene.add(ambientLight);
 
+    // testing
+    const pointLight = new THREE.PointLight( 0xfff0f0, 0.6, 100, 0 );
+    pointLight.position.set( -1000, 1500, 500 );
+    this.scene.add( pointLight );
+
     const plane = new Plane(3000);
     this.plane = plane;
     this.scene.add(plane);
 
-    const grid = new THREE.GridHelper( 3000, 240 );
+    const grid = new THREE.GridHelper( 3000, 240, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
     this.scene.add(grid);
 
     this.setState({
