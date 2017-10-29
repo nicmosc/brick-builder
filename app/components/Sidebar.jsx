@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from 'components/Button';
+import ColorPicker from 'components/ColorPicker';
 
 import styles from 'styles/components/sidebar';
 
@@ -27,8 +28,9 @@ class Sidebar extends React.Component {
         </div>
         <div className={styles.section}>
           <div className={styles.title}>
-            Colour
+            Color
           </div>
+          <ColorPicker />
         </div>
       </div>
     );

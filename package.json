@@ -16,11 +16,10 @@
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "babel-core": "^7.0.0-beta.3",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.0.0",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-preset-react": "^7.0.0-beta.3",
     "babel-preset-stage-0": "^7.0.0-beta.3",
-    "babel-loader": "^7.0.0",
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
     "extract-loader": "^0.1.0",
@@ -49,6 +48,7 @@
     "jquery": "^3.2.1",
     "normalize.css": "^7.0.0",
     "pubsub-js": "^1.5.7",
+    "react-color": "^2.13.8",
     "rimraf": "^2.6.1",
     "three-orbit-controls": "^82.1.0"
   }
