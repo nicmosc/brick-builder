@@ -43,8 +43,8 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: [ 'react', ['latest', { 'es2015': { 'modules': false } }], 'stage-0' ],
-              plugins: [ 'react-hot-loader/babel' ],
+              presets: [ "react", ["env", { "modules": false }], "stage-0" ],
+              plugins: [ "react-hot-loader/babel" ]
             },
           }
         ],

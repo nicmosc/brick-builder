@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import Scene from 'components/engine/Scene';
+import Sidebar from 'components/Sidebar';
 
 import styles from 'styles/containers/builder';
 
@@ -15,7 +16,7 @@ class Builder extends React.Component {
     return (
       <div className={styles.builder}>
         <Scene />
-        <button style={{position: 'absolute', top: 0, left: 0}}>Builder</button>
+        <Sidebar />
       </div>
     );
   }

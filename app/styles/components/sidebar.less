@@ -1,0 +1,40 @@
+// ----------------
+// SIDEBAR
+//
+// Component File
+// ----------------
+
+@import '~styles/vars';
+
+
+:local(.sidebar) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  background: @primary-blue;
+  box-shadow: 5px 0px 12px 1px rgba(0,0,0,0.25);
+  transition: all @base-transition-time ease-in-out;
+
+  &:hover {
+    box-shadow: 7px 0px 15px 1px rgba(0,0,0,0.20);
+  }
+}
+
+
+:local(.section) {
+  margin-top: @base-margin;
+}
+
+
+
+:local(.title) {
+  color: @text-color-primary;
+  padding: @base-padding @base-padding-small;
+  text-transform: uppercase;
+  font-size: 1em;
+}
