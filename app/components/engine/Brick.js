@@ -1,13 +1,14 @@
 import { mergeMeshes } from 'utils/threejs';
+import { CSSToHex } from 'utils';
 import { width, height, depth, colors } from 'utils/constants';
 
-const color = colors[0];
+const color = CSSToHex(colors[0]);
 
 
 export default class Brick extends THREE.Mesh {
   constructor(intersect) {
     const cubeMaterial = new THREE.MeshPhongMaterial({
-      color: parseInt(color || colors[Math.floor(Math.random()*colors.length)], 16),
+      color: color,
       specular: 0x482626,
       shininess: 5,
     });

@@ -8,7 +8,7 @@ import styles from 'styles/components/sidebar';
 
 class Sidebar extends React.Component {
   render() {
-    const { mode, onClickSetMode } = this.props;
+    const { mode, onClickSetMode, color, onClickSetColor } = this.props;
     return (
       <div className={styles.sidebar}>
         <div className={styles.section}>
@@ -30,7 +30,7 @@ class Sidebar extends React.Component {
           <div className={styles.title}>
             Color
           </div>
-          <ColorPicker />
+          <ColorPicker background={color} handleSetColor={onClickSetColor} />
         </div>
       </div>
     );

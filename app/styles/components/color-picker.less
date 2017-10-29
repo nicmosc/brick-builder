@@ -11,6 +11,10 @@
   position: relative;
   display: flex;
   justify-content: center;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 
@@ -21,14 +25,15 @@
 
 :local(.picker) {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: ~'calc(100% + 10px)';
+  left: ~'calc(50% - 20px)';
   display: none;
-  transform: scaleX(1);
+  // transform: translateX();
 }
 
 
 :local(.visible) {
+  composes: picker;
   display: block;
-  transform: scaleX(0);
+  // transform: scaleX(0);
 }

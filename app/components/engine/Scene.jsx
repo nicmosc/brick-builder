@@ -14,14 +14,14 @@ import {
   Plane,
   Renderer,
 } from 'components/engine/core';
-
-import { width, height, depth } from 'utils/constants';
+import { CSSToHex } from 'utils';
+import { width, height, depth, colors } from 'utils/constants';
 
 import styles from 'styles/components/scene';
 
 
 // placeholder
-let color = 0xb9140a;
+let color = colors[0];
 
 
 class Scene extends React.Component {

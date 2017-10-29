@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { getMode } from 'selectors';
-import { setMode } from 'actions';
+import { getMode, getColor } from 'selectors';
+import { setMode, setColor } from 'actions';
 import Scene from 'components/engine/Scene';
 import Sidebar from 'components/Sidebar';
 
@@ -15,13 +15,15 @@ class Builder extends React.Component {
   }
 
   render() {
-    const { mode, setMode } = this.props;
+    const { mode, setMode, color, setColor } = this.props;
     return (
       <div className={styles.builder}>
         <Scene />
         <Sidebar
           onClickSetMode={setMode}
-          mode={mode} />
+          onClickSetColor={setColor}
+          mode={mode}
+          color={color} />
       </div>
     );
   }
@@ -30,11 +32,13 @@ class Builder extends React.Component {
 
 const mapStateToProps = (state) => ({
   mode: getMode(state),
+  color: getColor(state),
 });
 
 
 const mapDispatchToProps = {
   setMode,
+  setColor,
 };
 
 
