@@ -5,12 +5,12 @@ import { width, height, depth } from 'utils/constants';
 
 export default class Brick extends THREE.Mesh {
   constructor(intersect, color) {
-    console.log(CSSToHex(shadeColor(color, -20)));
-    const cubeMaterial = new THREE.MeshPhongMaterial({
+    const cubeMaterial = new THREE.MeshStandardMaterial({
       color: CSSToHex(color),
-      // specular: 0x482626,
-      specular: CSSToHex(shadeColor(color, -20)),
-      shininess: 5,
+      // specular: CSSToHex(shadeColor(color, -20)),
+      // shininess: 5,
+      metalness: 0.4,
+      roughness: 0.5,
     });
     const props = createMesh(cubeMaterial);
     super(...props);
