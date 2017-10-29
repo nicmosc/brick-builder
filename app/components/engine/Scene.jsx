@@ -144,6 +144,8 @@ class Scene extends React.Component {
 
   _onMouseUp(event, scene) {
     const { drag, objects, isShiftDown } = this.state;
+    console.log(event.target.localName);
+    if (event.target.localName !== 'canvas') return;
     event.preventDefault();
     if (! drag) {
       scene.mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );

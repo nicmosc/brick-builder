@@ -1,0 +1,48 @@
+// ----------------
+// BUTTON
+//
+// Component File
+// ----------------
+
+@import '~styles/vars';
+
+
+@button-color-default: fade(@text-color-secondary, 40);
+
+
+:local(.button) {
+  padding: @base-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: @button-color-default;
+  transition: all @base-transition-time ease-in-out;
+
+  &:hover {
+    color: @text-color-secondary;
+    cursor: pointer;
+  }
+}
+
+
+:local(.active) {
+  composes: button;
+  color: @text-color-secondary;
+  background: @secondary-blue;
+  box-shadow: inset -2px 0px 3px rgba(0, 0, 0, 0.25), inset 2px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+:local(.icon) {
+  font-family: 'ionicons';
+  font-size: 1.5em;
+  margin-bottom: @base-margin-small;
+}
+
+
+:local(.text) {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.65em;
+}

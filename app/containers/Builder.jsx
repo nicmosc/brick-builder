@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { getMode } from 'selectors';
+import { setMode } from 'actions';
 import Scene from 'components/engine/Scene';
 import Sidebar from 'components/Sidebar';
 
@@ -13,10 +15,13 @@ class Builder extends React.Component {
   }
 
   render() {
+    const { mode, setMode } = this.props;
     return (
       <div className={styles.builder}>
         <Scene />
-        <Sidebar />
+        <Sidebar
+          onClickSetMode={setMode}
+          mode={mode} />
       </div>
     );
   }
@@ -24,10 +29,12 @@ class Builder extends React.Component {
 
 
 const mapStateToProps = (state) => ({
+  mode: getMode(state),
 });
 
 
 const mapDispatchToProps = {
+  setMode,
 };
 
 
