@@ -18,7 +18,7 @@ class Builder extends React.Component {
     const { mode, setMode, color, setColor } = this.props;
     return (
       <div className={styles.builder}>
-        <Scene />
+        <Scene brickColor={color} />
         <Sidebar
           onClickSetMode={setMode}
           onClickSetColor={setColor}

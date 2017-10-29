@@ -1,15 +1,15 @@
 import { mergeMeshes } from 'utils/threejs';
-import { CSSToHex } from 'utils';
-import { width, height, depth, colors } from 'utils/constants';
-
-const color = CSSToHex(colors[0]);
+import { CSSToHex, shadeColor } from 'utils';
+import { width, height, depth } from 'utils/constants';
 
 
 export default class Brick extends THREE.Mesh {
-  constructor(intersect) {
+  constructor(intersect, color) {
+    console.log(CSSToHex(shadeColor(color, -20)));
     const cubeMaterial = new THREE.MeshPhongMaterial({
-      color: color,
-      specular: 0x482626,
+      color: CSSToHex(color),
+      // specular: 0x482626,
+      specular: CSSToHex(shadeColor(color, -20)),
       shininess: 5,
     });
     const props = createMesh(cubeMaterial);

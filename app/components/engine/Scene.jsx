@@ -20,10 +20,6 @@ import { width, height, depth, colors } from 'utils/constants';
 import styles from 'styles/components/scene';
 
 
-// placeholder
-let color = colors[0];
-
-
 class Scene extends React.Component {
   state = {
     drag: false,
@@ -95,7 +91,8 @@ class Scene extends React.Component {
   }
 
   _initUtils() {
-    const rollOverBrick = new RollOverBrick(color);
+    const { brickColor } = this.props;
+    const rollOverBrick = new RollOverBrick(brickColor);
     this.scene.add(rollOverBrick);
     this.rollOverBrick = rollOverBrick;
     const raycaster = new THREE.Raycaster();
@@ -143,6 +140,7 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
+    const { brickColor } = this.props;
     const { drag, objects, isShiftDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
@@ -174,7 +172,7 @@ class Scene extends React.Component {
             }
           }
           if (canCreate) {
-            const brick = new Brick(intersect);
+            const brick = new Brick(intersect, brickColor);
             this.scene.add(brick);
             this.setState({
               objects: [ ...objects, brick],
