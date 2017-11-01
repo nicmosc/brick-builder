@@ -6,6 +6,7 @@ import { getMode, getColor } from 'selectors';
 import { setMode, setColor } from 'actions';
 import Scene from 'components/engine/Scene';
 import Sidebar from 'components/Sidebar';
+import Help from 'components/Help';
 
 import styles from 'styles/containers/builder';
 
@@ -24,6 +25,7 @@ class Builder extends React.Component {
           onClickSetColor={setColor}
           mode={mode}
           color={color} />
+        <Help />
       </div>
     );
   }
