@@ -7,7 +7,7 @@ import styles from 'styles/components/help';
 
 class Help extends React.Component {
   state = {
-    open: false,
+    open: true,
   }
 
   constructor(props) {
@@ -33,7 +33,20 @@ class Help extends React.Component {
           <span>Help</span>
         </div>
         <Portal>
-          <div className={open ? styles.modal : styles.closedModal}>
+          <div className={open ? styles.modalWrapper : styles.closedModal}>
+            <div className={styles.modal}>
+              <div className={styles.close} onClick={this._toggleHelp}>
+                <i className="ion-close" />
+              </div>
+              <h1 style={{ textAlign: 'center' }}>
+                Brick Builder
+              </h1>
+              <h3>What is this?</h3>
+              <p>Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the side menu!</p>
+              <h2 style={{ textAlign: 'center' }}>
+                Available commands
+              </h2>
+            </div>
           </div>
         </Portal>
       </div>
