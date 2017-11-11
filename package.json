@@ -10,6 +10,10 @@
     "build": "npm run clean && webpack --progress --config webpack.config.js -p",
     "webpack": "webpack"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicmosc/brick-builder"
+  },
   "keywords": [],
   "author": "Nicolaos Moscholios <nmoscholios@gmail.com>",
   "license": "MIT",
@@ -37,7 +41,6 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "next",
-    "react-portal": "^4.0.0-rc.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "style-loader": "^0.18.1",

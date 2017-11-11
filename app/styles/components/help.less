@@ -51,7 +51,7 @@
   border-radius: 10px;
   box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.25);
   transition: opacity @base-transition-time * 1.5 cubic-bezier(0.4, 0, 0.2, 1), transform @base-transition-time cubic-bezier(0.4, 0, 0.2, 1);
-  background: @primary-blue;
+  background: @secondary-blue;
 }
 
 
@@ -92,5 +92,49 @@
   &:hover {
     cursor: pointer;
     background: darken(@white, 10%);
+  }
+}
+
+
+:local(.section) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: @base-padding;
+}
+
+
+:local(.icon) {
+  margin-right: @base-margin * 2;
+  color: @text-color-secondary;
+  font-size: 2.7em;
+  width: 30px;
+}
+
+
+:local(.github) {
+  position: absolute;
+  bottom: @base-padding;
+  right: @base-padding;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: @text-color-secondary;
+  transition: all @base-transition-time ease-in-out;
+
+  > a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  > i {
+    margin-right: @base-margin-small;
+    font-size: 1.2em;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: @text-color-primary;
   }
 }

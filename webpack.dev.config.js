@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const webpackBaseConfig = require('./webpack.base.config.js');
+const packageJson = require('./package.json');
 
 
 module.exports = Object.assign({}, webpackBaseConfig, {
@@ -24,6 +25,9 @@ module.exports = Object.assign({}, webpackBaseConfig, {
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('development') }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { REPOSITORY_URL: JSON.stringify(packageJson.repository.url) },
     }),
   ],
    devServer: {

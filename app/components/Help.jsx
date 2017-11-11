@@ -1,8 +1,46 @@
 import React from 'react';
-import  { Portal } from 'react-portal';
+import  { createPortal } from 'react-dom';
 
 
 import styles from 'styles/components/help';
+
+
+const HelpModal = ({ open, toggleClose }) => {
+  return createPortal(
+    <div className={open ? styles.modalWrapper : styles.closedModal}>
+      <div className={styles.modal}>
+        <div className={styles.close} onClick={toggleClose}>
+          <i className="ion-close" />
+        </div>
+        <h1 style={{ textAlign: 'center' }}>
+          Brick Builder
+        </h1>
+        <h3>What is this?</h3>
+        <p>Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the side menu!</p>
+        <h2 style={{ textAlign: 'center' }}>
+          Available commands
+        </h2>
+        <div className={styles.section}>
+          <div className={styles.icon}>
+            <i className="ion-hammer" />
+          </div>
+          <div>In BUILD mode you can place bricks with a <strong>RIGHT</strong> click. If you press <strong>SHIFT</strong> at the same time you delete bricks.</div>
+        </div>
+        <div className={styles.section}>
+          <div className={styles.icon}>
+            <i className="ion-paintbrush" />
+          </div>
+          <div>In PAINT mode you set the chosen color (on the sidebar) to existing bricks.</div>
+        </div>
+        <div className={styles.github}>
+          <i className="ion-social-github" />
+          <a href={process.env.REPOSITORY_URL} target="_blank">View on Github</a>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
 
 
 class Help extends React.Component {
@@ -32,23 +70,7 @@ class Help extends React.Component {
           <i className="ion-information-circled" />
           <span>Help</span>
         </div>
-        <Portal>
-          <div className={open ? styles.modalWrapper : styles.closedModal}>
-            <div className={styles.modal}>
-              <div className={styles.close} onClick={this._toggleHelp}>
-                <i className="ion-close" />
-              </div>
-              <h1 style={{ textAlign: 'center' }}>
-                Brick Builder
-              </h1>
-              <h3>What is this?</h3>
-              <p>Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the side menu!</p>
-              <h2 style={{ textAlign: 'center' }}>
-                Available commands
-              </h2>
-            </div>
-          </div>
-        </Portal>
+        <HelpModal open={open} toggleClose={this._toggleHelp} />
       </div>
     );
   }

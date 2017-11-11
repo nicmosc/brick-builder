@@ -16,6 +16,9 @@ module.exports = Object.assign({}, webpackBaseConfig, {
   plugins: [
     ...webpackBaseConfig.plugins,
     new webpack.DefinePlugin({
+      'process.env': { REPOSITORY_URL: JSON.stringify(packageJson.repository.url) },
+    }),
+    new webpack.DefinePlugin({
       'process.env': { APP_VERSION: JSON.stringify(packageJson.version) },
     }),
     new webpack.DefinePlugin({
