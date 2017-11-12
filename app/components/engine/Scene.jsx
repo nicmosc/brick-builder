@@ -140,7 +140,7 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { brickColor } = this.props;
+    const { mode } = this.props;
     const { drag, objects, isShiftDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
@@ -150,36 +150,47 @@ class Scene extends React.Component {
       const intersects = scene.raycaster.intersectObjects( objects );
       if ( intersects.length > 0 ) {
         const intersect = intersects[ 0 ];
-        // delete cube
-        if ( isShiftDown ) {
-          this._deleteCube(intersect);
-        // create cube
-        } else {
-          let canCreate = true;
-          const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
-          const meshBoundingBox = new THREE.Box3().setFromObject(scene.rollOverBrick);
-          for (var i = 0; i < bricks.length; i++) {
-            const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
-            const collision = meshBoundingBox.intersectsBox(brickBoundingBox);
-            if (collision) {
-              const dx = Math.abs(brickBoundingBox.max.x - meshBoundingBox.max.x);
-              const dz = Math.abs(brickBoundingBox.max.z - meshBoundingBox.max.z);
-              const yIntsersect = brickBoundingBox.max.y - 9 > meshBoundingBox.min.y;
-              if (yIntsersect && dx !== width && dz !== depth) {
-                canCreate = false;
-                break;
-              }
-            }
-          }
-          if (canCreate) {
-            const brick = new Brick(intersect, brickColor);
-            this.scene.add(brick);
-            this.setState({
-              objects: [ ...objects, brick],
-            });
+        if (mode === 'build') {
+          // delete cube
+          if ( isShiftDown ) {
+            this._deleteCube(intersect);
+          // create cube
+          } else {
+            this._createCube(intersect);
           }
         }
+        else if (mode === 'paint') {
+          this._paintCube(intersect);
+        }
       }
+    }
+  }
+
+  _createCube(intersect) {
+    const { objects } = this.state;
+    const { brickColor } = this.props;
+    let canCreate = true;
+    const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
+    const meshBoundingBox = new THREE.Box3().setFromObject(this.rollOverBrick);
+    for (var i = 0; i < bricks.length; i++) {
+      const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
+      const collision = meshBoundingBox.intersectsBox(brickBoundingBox);
+      if (collision) {
+        const dx = Math.abs(brickBoundingBox.max.x - meshBoundingBox.max.x);
+        const dz = Math.abs(brickBoundingBox.max.z - meshBoundingBox.max.z);
+        const yIntsersect = brickBoundingBox.max.y - 9 > meshBoundingBox.min.y;
+        if (yIntsersect && dx !== width && dz !== depth) {
+          canCreate = false;
+          break;
+        }
+      }
+    }
+    if (canCreate) {
+      const brick = new Brick(intersect, brickColor);
+      this.scene.add(brick);
+      this.setState({
+        objects: [ ...objects, brick],
+      });
     }
   }
 
@@ -190,6 +201,17 @@ class Scene extends React.Component {
       // fix below
       this.setState({
         objects: objects.filter((o) => o !== intersect.object),
+      });
+    }
+  }
+
+  _paintCube(intersect) {
+    const { brickColor } = this.props;
+    if (intersect.object != this.plane) {
+      // console.log(intersect.object);
+      intersect.object.updateColor(brickColor);
+      this.setState({
+        // objects: objects.filter((o) => o !== intersect.object),
       });
     }
   }

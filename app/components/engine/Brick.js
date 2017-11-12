@@ -22,6 +22,11 @@ export default class Brick extends THREE.Mesh {
     this.castShadow = true;
     this.receiveShadow = true;
   }
+
+  updateColor(color) {
+    // this.material.color = CSSToHex(color);
+    this.material.setValues({ color: CSSToHex(color) });
+  }
 }
 
 

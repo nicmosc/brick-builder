@@ -45,7 +45,7 @@ const HelpModal = ({ open, toggleClose }) => {
 
 class Help extends React.Component {
   state = {
-    open: true,
+    open: false,
   }
 
   constructor(props) {
