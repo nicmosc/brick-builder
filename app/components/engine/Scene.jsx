@@ -46,6 +46,16 @@ class Scene extends React.Component {
     this._start();
   }
 
+  componentDidUpdate(prevProps) {
+    const { mode } = this.props;
+    if (mode !== prevProps.mode && mode === 'paint') {
+      this.rollOverBrick.visible = false;
+    }
+    else if (mode !== prevProps.mode && mode === 'build') {
+      this.rollOverBrick.visible = true;
+    }
+  }
+
   _initCore() {
     const scene = new THREE.Scene();
     this.scene = scene;
@@ -118,18 +128,27 @@ class Scene extends React.Component {
 
   _onMouseMove(event, scene) {
     const { isShiftDown, objects } = this.state;
+    const { mode } = this.props;
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
     const intersects = scene.raycaster.intersectObjects( objects, true );
-    if ( intersects.length > 0 && ! isShiftDown) {
+    if ( intersects.length > 0) {
       const intersect = intersects[ 0 ];
-      scene.rollOverBrick.position.copy( intersect.point ).add( intersect.face.normal );
-      scene.rollOverBrick.position.divide( new THREE.Vector3( width / 2, height, depth / 2) ).floor()
-        .multiply( new THREE.Vector3( width / 2, height, depth / 2 ) )
-        .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
+      if (! isShiftDown) {
+        scene.rollOverBrick.position.copy( intersect.point ).add( intersect.face.normal );
+        scene.rollOverBrick.position.divide( new THREE.Vector3( width / 2, height, depth / 2) ).floor()
+          .multiply( new THREE.Vector3( width / 2, height, depth / 2 ) )
+          .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
+      }
+      if (intersect.object instanceof Brick && (isShiftDown || mode === 'paint')) {
+        this.setState({ brickHover: true });
+      }
+      else {
+        this.setState({ brickHover: false });
+      }
     }
   }
 
@@ -208,11 +227,7 @@ class Scene extends React.Component {
   _paintCube(intersect) {
     const { brickColor } = this.props;
     if (intersect.object != this.plane) {
-      // console.log(intersect.object);
       intersect.object.updateColor(brickColor);
-      this.setState({
-        // objects: objects.filter((o) => o !== intersect.object),
-      });
     }
   }
 
@@ -228,12 +243,13 @@ class Scene extends React.Component {
   }
 
   _onKeyUp(event, scene ) {
+    const { mode } = this.props;
     switch (event.keyCode) {
       case 16:
         scene.setState({
           isShiftDown: false,
         });
-        scene.rollOverBrick.visible = true;
+        scene.rollOverBrick.visible = true && mode === 'build';
         break;
     }
   }
@@ -262,9 +278,10 @@ class Scene extends React.Component {
   }
 
   render() {
+    const { brickHover } = this.state;
     return(
       <div>
-        <div className={styles.scene} ref={(mount) => { this.mount = mount }} />
+        <div className={styles.scene} style={{  cursor: brickHover ? 'pointer' : 'default' }} ref={(mount) => { this.mount = mount }} />
         <Monitor />
       </div>
     );

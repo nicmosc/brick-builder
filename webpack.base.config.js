@@ -169,16 +169,15 @@ module.exports = {
       },
       {
         test: /\.png$/,
-        use: [{
-          loader: 'url-loader',
-
-          options: {
-            limit: 10000,
-            mimetype: 'image/png',
-            name: '/[name].[ext]'
-          }
-        }],
-      }
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[name]-[hash].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
 };

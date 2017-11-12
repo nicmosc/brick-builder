@@ -1,3 +1,5 @@
+import v4 from 'uuid';
+
 import { mergeMeshes } from 'utils/threejs';
 import { CSSToHex, shadeColor } from 'utils';
 import { width, height, depth } from 'utils/constants';
@@ -21,11 +23,13 @@ export default class Brick extends THREE.Mesh {
       .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
     this.castShadow = true;
     this.receiveShadow = true;
+    this.customId = v4();
+    this.defaultColor = cubeMaterial.color;
   }
 
   updateColor(color) {
-    // this.material.color = CSSToHex(color);
     this.material.setValues({ color: CSSToHex(color) });
+    this.defaultColor = this.material.color;
   }
 }
 

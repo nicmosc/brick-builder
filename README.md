@@ -15,3 +15,13 @@ Build for production
 ```
 yarn build
 ```
+
+
+### To do
+[ ] Paint mode
+[ ] Export/import
+[ ] Undo
+[ ] Different brick sizes (shapes)
+[ ] Show/hide grid
+[ ] Control UI (rotate, drag)
+[ ] Save image
