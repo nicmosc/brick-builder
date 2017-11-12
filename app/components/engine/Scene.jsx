@@ -1,10 +1,12 @@
 import React from 'react';
 import PubSub from 'pubsub-js';
 const OrbitControls = require('three-orbit-controls')(THREE);
+import If from 'if-only';
 
 import Detector from 'utils/threejs/detector';
 import Monitor from 'components/engine/Monitor';
 import Brick from 'components/engine/Brick';
+import Message from 'components/Message';
 import { RollOverBrick } from 'components/engine/Helpers';
 import {
   PerspectiveCamera,
@@ -278,10 +280,17 @@ class Scene extends React.Component {
   }
 
   render() {
-    const { brickHover } = this.state;
+    const { brickHover, isShiftDown } = this.state;
+    const { mode } = this.props;
     return(
       <div>
         <div className={styles.scene} style={{  cursor: brickHover ? 'pointer' : 'default' }} ref={(mount) => { this.mount = mount }} />
+        <If cond={isShiftDown && mode === 'build'}>
+          <Message>
+            <i className="ion-trash-a" />
+            <span>Deleting bricks</span>
+          </Message>
+        </If>
         <Monitor />
       </div>
     );
