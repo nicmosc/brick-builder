@@ -49,12 +49,19 @@ class Scene extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { mode } = this.props;
+    const { mode, grid } = this.props;
     if (mode !== prevProps.mode && mode === 'paint') {
       this.rollOverBrick.visible = false;
     }
     else if (mode !== prevProps.mode && mode === 'build') {
       this.rollOverBrick.visible = true;
+    }
+
+    if (grid !== prevProps.grid && grid === true) {
+      this.grid.visible = true;
+    }
+    else if (grid !== prevProps.grid && grid !== true) {
+      this.grid.visible = false;
     }
   }
 
@@ -95,6 +102,7 @@ class Scene extends React.Component {
     this.scene.add(plane);
 
     const grid = new THREE.GridHelper( 3000, 240, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
+    this.grid = grid;
     this.scene.add(grid);
 
     this.setState({

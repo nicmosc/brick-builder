@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { getMode, getColor } from 'selectors';
-import { setMode, setColor } from 'actions';
+import { getMode, getColor, getIsGridVisible } from 'selectors';
+import { setMode, setColor, toggleGrid } from 'actions';
 import Scene from 'components/engine/Scene';
 import Sidebar from 'components/Sidebar';
 import Help from 'components/Help';
@@ -16,15 +16,17 @@ class Builder extends React.Component {
   }
 
   render() {
-    const { mode, setMode, color, setColor } = this.props;
+    const { mode, setMode, color, setColor, gridVisible, toggleGrid } = this.props;
     return (
       <div className={styles.builder}>
-        <Scene brickColor={color} mode={mode} />
+        <Scene brickColor={color} mode={mode} grid={gridVisible} />
         <Sidebar
           onClickSetMode={setMode}
           onClickSetColor={setColor}
+          onClickToggleGrid={toggleGrid}
           mode={mode}
-          color={color} />
+          color={color}
+          grid={gridVisible} />
         <Help />
       </div>
     );
@@ -35,12 +37,14 @@ class Builder extends React.Component {
 const mapStateToProps = (state) => ({
   mode: getMode(state),
   color: getColor(state),
+  gridVisible: getIsGridVisible(state),
 });
 
 
 const mapDispatchToProps = {
   setMode,
   setColor,
+  toggleGrid,
 };
 
 

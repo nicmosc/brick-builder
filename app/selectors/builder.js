@@ -6,3 +6,8 @@ export function getMode(state) {
 export function getColor(state) {
   return state.builder.color;
 }
+
+
+export function getIsGridVisible(state) {
+  return state.builder.grid;
+}

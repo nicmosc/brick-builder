@@ -5,6 +5,7 @@ import { colors } from 'utils/constants';
 
 const initialState = {
   mode: 'build',
+  grid: true,
   color: colors[0],
 };
 
@@ -23,6 +24,13 @@ export default function builder(state=initialState, action) {
       return {
         ...state,
         color,
+      };
+    }
+    case BuilderActions.TOGGLE_GRID: {
+      const { grid } = state;
+      return {
+        ...state,
+        grid: !grid,
       };
     }
     default: {

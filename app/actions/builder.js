@@ -20,3 +20,12 @@ export function setColor(color) {
     },
   };
 }
+
+
+export const TOGGLE_GRID = 'TOGGLE_GRID';
+
+export function toggleGrid() {
+  return {
+    type: TOGGLE_GRID,
+  };
+}

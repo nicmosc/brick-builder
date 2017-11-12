@@ -6,35 +6,49 @@ import ColorPicker from 'components/ColorPicker';
 import styles from 'styles/components/sidebar';
 
 
-class Sidebar extends React.Component {
-  render() {
-    const { mode, onClickSetMode, color, onClickSetColor } = this.props;
-    return (
-      <div className={styles.sidebar}>
-        <div className={styles.section}>
-          <div className={styles.title}>
-            Mode
-          </div>
-          <Button
-            active={mode === 'build'}
-            onClick={() => onClickSetMode('build')}
-            icon="hammer"
-            text="Build" />
-          <Button
-            active={mode === 'paint'}
-            onClick={() => onClickSetMode('paint')}
-            icon="paintbrush"
-            text="Paint" />
+const Sidebar = ({
+  mode,
+  onClickSetMode,
+  color,
+  onClickSetColor,
+  grid,
+  onClickToggleGrid,
+}) => {
+  return (
+    <div className={styles.sidebar}>
+      <div className={styles.section}>
+        <div className={styles.title}>
+          Mode
         </div>
-        <div className={styles.section}>
-          <div className={styles.title}>
-            Color
-          </div>
-          <ColorPicker background={color} handleSetColor={onClickSetColor} />
-        </div>
+        <Button
+          active={mode === 'build'}
+          onClick={() => onClickSetMode('build')}
+          icon="hammer"
+          text="Build" />
+        <Button
+          active={mode === 'paint'}
+          onClick={() => onClickSetMode('paint')}
+          icon="paintbrush"
+          text="Paint" />
       </div>
-    );
-  }
+      <div className={styles.section}>
+        <div className={styles.title}>
+          Color
+        </div>
+        <ColorPicker background={color} handleSetColor={onClickSetColor} />
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>
+          Scene
+        </div>
+        <Button
+          active={grid}
+          onClick={onClickToggleGrid}
+          icon="grid"
+          text="Grid" />
+      </div>
+    </div>
+  );
 }
 
 
