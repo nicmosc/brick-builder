@@ -21,7 +21,8 @@ yarn build
 - [x] Paint mode
 - [ ] Export/import
 - [ ] Undo
+- [ ] Reset scene (delete all)
 - [ ] Different brick sizes (shapes)
-- [ ] Show/hide grid
+- [x] Show/hide grid
 - [ ] Control UI (rotate, drag)
 - [ ] Save image
