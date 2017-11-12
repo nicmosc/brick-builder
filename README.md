@@ -18,7 +18,7 @@ yarn build
 
 
 ### To do
-[ ] Paint mode
+[x] Paint mode
 [ ] Export/import
 [ ] Undo
 [ ] Different brick sizes (shapes)
