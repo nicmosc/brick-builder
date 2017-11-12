@@ -18,10 +18,10 @@ yarn build
 
 
 ### To do
-[x] Paint mode
-[ ] Export/import
-[ ] Undo
-[ ] Different brick sizes (shapes)
-[ ] Show/hide grid
-[ ] Control UI (rotate, drag)
-[ ] Save image
+- [x] Paint mode
+- [ ] Export/import
+- [ ] Undo
+- [ ] Different brick sizes (shapes)
+- [ ] Show/hide grid
+- [ ] Control UI (rotate, drag)
+- [ ] Save image
