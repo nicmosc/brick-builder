@@ -6,7 +6,7 @@ const packageJson = require('./package.json');
 
 
 module.exports = Object.assign({}, webpackBaseConfig, {
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: Object.keys(webpackBaseConfig.entry).reduce((result, k) => {
     result[k] = [
       // 'react-hot-loader/patch',
