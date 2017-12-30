@@ -143,6 +143,7 @@ class Scene extends React.Component {
     const drag = true;
     this.setState({ drag });
     const evenWidth = dimensions.x % 2 === 0;
+    const evenHeight = dimensions.y % 2 === 0;
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
     const intersects = scene.raycaster.intersectObjects( objects, true );
@@ -152,7 +153,7 @@ class Scene extends React.Component {
         scene.rollOverBrick.position.copy( intersect.point ).add( intersect.face.normal );
         scene.rollOverBrick.position.divide( new THREE.Vector3( base, height, base) ).floor()
           .multiply( new THREE.Vector3( base, height, base ) )
-          .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, base ) );
+          .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, evenHeight ? base : base / 2 ) );
       }
       if (intersect.object instanceof Brick && (isShiftDown || mode === 'paint')) {
         this.setState({ brickHover: true });

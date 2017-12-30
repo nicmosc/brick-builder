@@ -21,10 +21,11 @@ export default class Brick extends THREE.Mesh {
     super(...props);
 
     const evenWidth = dimensions.x % 2 === 0;
+    const evenHeight = dimensions.y % 2 === 0;
     this.position.copy( intersect.point ).add( intersect.face.normal );
     this.position.divide( new THREE.Vector3(base, height, base) ).floor()
       .multiply( new THREE.Vector3(base, height, base) )
-      .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, base ) );
+      .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, evenHeight ? base : base / 2 ) );
     this.castShadow = true;
     this.receiveShadow = true;
     this.customId = v4();
