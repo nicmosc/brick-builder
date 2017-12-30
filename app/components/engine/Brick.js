@@ -2,7 +2,7 @@ import v4 from 'uuid';
 
 import { mergeMeshes } from 'utils/threejs';
 import { CSSToHex, shadeColor } from 'utils';
-import { width, height, depth, base } from 'utils/constants';
+import { width, height, depth, base, dimensions } from 'utils/constants';
 
 
 const knobSize = 7;
@@ -20,10 +20,11 @@ export default class Brick extends THREE.Mesh {
     const props = createMesh(cubeMaterial);
     super(...props);
 
+    const evenWidth = dimensions.x % 2 === 0;
     this.position.copy( intersect.point ).add( intersect.face.normal );
     this.position.divide( new THREE.Vector3(base, height, base) ).floor()
       .multiply( new THREE.Vector3(base, height, base) )
-      .add( new THREE.Vector3( base, height / 2, base ) );
+      .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, base ) );
     this.castShadow = true;
     this.receiveShadow = true;
     this.customId = v4();
@@ -47,19 +48,19 @@ function createMesh(material) {
   mesh.castShadow = true;
   mesh.receiveShadow = true;
 
-  const positions = [
-    {x: 13, y: 25 / 1.5, z: - 13},
-    {x: - 13, y: 25 / 1.5, z: 13},
-    {x: - 13, y: 25 / 1.5, z: - 13},
-    {x: 13, y: 25 / 1.5, z: 13}
-  ];
-
   // const positions = [
-  //   {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
-  //   {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
-  //   // {x: width / 4, y: 25 / 1.5, z: width / 4},
-  //   // {x: width / 4, y: 25 / 1.5, z: - width / 4},
+  //   {x: 13, y: 25 / 1.5, z: - 13},
+  //   {x: - 13, y: 25 / 1.5, z: 13},
+  //   {x: - 13, y: 25 / 1.5, z: - 13},
+  //   {x: 13, y: 25 / 1.5, z: 13}
   // ];
+
+  const positions = [
+    {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
+    {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
+    // {x: width / 4, y: 25 / 1.5, z: width / 4},
+    // {x: width / 4, y: 25 / 1.5, z: - width / 4},
+  ];
 
   for (var i = 0; i < positions.length; i++) {
     const cylinder = new THREE.Mesh(cylinderGeo, material);
