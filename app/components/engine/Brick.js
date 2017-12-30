@@ -1,15 +1,15 @@
 import v4 from 'uuid';
 
 import { mergeMeshes } from 'utils/threejs';
-import { CSSToHex, shadeColor } from 'utils';
-import { width, height, depth, base, dimensions } from 'utils/constants';
+import { CSSToHex, shadeColor, getMeasurementsFromDimensions } from 'utils';
+import { base } from 'utils/constants';
 
 
 const knobSize = 7;
 
 
 export default class Brick extends THREE.Mesh {
-  constructor(intersect, color) {
+  constructor(intersect, color, dimensions) {
     const cubeMaterial = new THREE.MeshStandardMaterial({
       color: CSSToHex(color),
       // specular: CSSToHex(shadeColor(color, -20)),
@@ -17,11 +17,16 @@ export default class Brick extends THREE.Mesh {
       metalness: 0.4,
       roughness: 0.5,
     });
-    const props = createMesh(cubeMaterial);
+    const { height, width, depth } = getMeasurementsFromDimensions(dimensions);
+    const props = createMesh(cubeMaterial, width, height, depth);
     super(...props);
 
     const evenWidth = dimensions.x % 2 === 0;
     const evenHeight = dimensions.y % 2 === 0;
+
+    this.height = height;
+    this.width = width;
+    this.depth = depth;
     this.position.copy( intersect.point ).add( intersect.face.normal );
     this.position.divide( new THREE.Vector3(base, height, base) ).floor()
       .multiply( new THREE.Vector3(base, height, base) )
@@ -39,7 +44,7 @@ export default class Brick extends THREE.Mesh {
 }
 
 
-function createMesh(material) {
+function createMesh(material, width, height, depth) {
   let meshes = [];
   const cubeGeo = new THREE.BoxGeometry( width, height, depth );
   const cylinderGeo = new THREE.CylinderGeometry( knobSize, knobSize, knobSize, 20);

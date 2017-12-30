@@ -1,9 +1,9 @@
-export const dimensions = { x: 3, y: 1 };
+export const dimensions = { x: 3, z: 1 };
 export const base = 25;
 
-export const height = (base * 2) / 1.5;
-export const width = base * dimensions.x;
-export const depth = base * dimensions.y;
+// export const height = (base * 2) / 1.5;
+// export const width = base * dimensions.x;
+// export const depth = base * dimensions.z;
 
 // export const colors = ['#b9140a', '#1e6914', '#1a3fcc', '#d49417'];
 

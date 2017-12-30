@@ -1,3 +1,6 @@
+import { base } from './constants';
+
+
 export function CSSToHex(cssColor) {
   return parseInt(`0x${cssColor.substring(1)}`, 16);
 }
@@ -22,3 +25,8 @@ export function shadeColor(color, percent) {
 
   return "#"+RR+GG+BB;
 };
+
+
+export function getMeasurementsFromDimensions({ x, y, z }) {
+  return { width: base * x, height: base * y || (base * 2) / 1.5, depth: base * z };
+}

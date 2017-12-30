@@ -16,8 +16,8 @@ import {
   Plane,
   Renderer,
 } from 'components/engine/core';
-import { CSSToHex } from 'utils';
-import { width, height, depth, colors, base, dimensions } from 'utils/constants';
+import { CSSToHex, getMeasurementsFromDimensions } from 'utils';
+import { colors, base } from 'utils/constants';
 
 import styles from 'styles/components/scene';
 
@@ -111,8 +111,8 @@ class Scene extends React.Component {
   }
 
   _initUtils() {
-    const { brickColor } = this.props;
-    const rollOverBrick = new RollOverBrick(brickColor);
+    const { brickColor, dimensions } = this.props;
+    const rollOverBrick = new RollOverBrick(brickColor, dimensions);
     this.scene.add(rollOverBrick);
     this.rollOverBrick = rollOverBrick;
     const raycaster = new THREE.Raycaster();
@@ -138,10 +138,11 @@ class Scene extends React.Component {
 
   _onMouseMove(event, scene) {
     const { isShiftDown, objects } = this.state;
-    const { mode } = this.props;
+    const { mode, dimensions } = this.props;
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
+    const { width, height } = getMeasurementsFromDimensions(dimensions);
     const evenWidth = dimensions.x % 2 === 0;
     const evenHeight = dimensions.y % 2 === 0;
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
@@ -199,8 +200,9 @@ class Scene extends React.Component {
 
   _createCube(intersect) {
     const { objects } = this.state;
-    const { brickColor } = this.props;
+    const { brickColor, dimensions } = this.props;
     let canCreate = true;
+    const { width, depth } = getMeasurementsFromDimensions(dimensions);
     const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
     const meshBoundingBox = new THREE.Box3().setFromObject(this.rollOverBrick);
     for (var i = 0; i < bricks.length; i++) {
@@ -217,7 +219,7 @@ class Scene extends React.Component {
       }
     }
     if (canCreate) {
-      const brick = new Brick(intersect, brickColor);
+      const brick = new Brick(intersect, brickColor, dimensions);
       this.scene.add(brick);
       this.setState({
         objects: [ ...objects, brick],

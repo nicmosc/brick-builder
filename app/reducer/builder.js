@@ -7,6 +7,7 @@ const initialState = {
   mode: 'build',
   grid: true,
   color: colors[0],
+  brick: { x: 3, z: 3 },
 };
 
 
