@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { getMode, getColor, getIsGridVisible } from 'selectors';
 import { setMode, setColor, toggleGrid } from 'actions';
 import Scene from 'components/engine/Scene';
-import Sidebar from 'components/Sidebar';
+import Topbar from 'components/Topbar';
 import Help from 'components/Help';
 
 import styles from 'styles/containers/builder';
@@ -20,7 +20,7 @@ class Builder extends React.Component {
     return (
       <div className={styles.builder}>
         <Scene brickColor={color} mode={mode} grid={gridVisible} />
-        <Sidebar
+        <Topbar
           onClickSetMode={setMode}
           onClickSetColor={setColor}
           onClickToggleGrid={toggleGrid}

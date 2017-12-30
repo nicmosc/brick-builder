@@ -3,10 +3,10 @@ import React from 'react';
 import Button from 'components/Button';
 import ColorPicker from 'components/ColorPicker';
 
-import styles from 'styles/components/sidebar';
+import styles from 'styles/components/topbar';
 
 
-const Sidebar = ({
+const Topbar = ({
   mode,
   onClickSetMode,
   color,
@@ -15,7 +15,7 @@ const Sidebar = ({
   onClickToggleGrid,
 }) => {
   return (
-    <div className={styles.sidebar}>
+    <div className={styles.topbar}>
       <div className={styles.section}>
         <div className={styles.title}>
           Mode
@@ -57,4 +57,4 @@ const Sidebar = ({
 }
 
 
-export default Sidebar;
+export default Topbar;
