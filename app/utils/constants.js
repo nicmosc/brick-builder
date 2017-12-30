@@ -1,4 +1,4 @@
-export const dimensions = { x: 1, y: 2 };
+export const dimensions = { x: 3, y: 2 };
 export const base = 25;
 
 export const height = (base * 2) / 1.5;

@@ -56,8 +56,8 @@ function createMesh(material) {
   // ];
 
   const positions = [
-    {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
-    {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
+    // {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
+    // {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
     // {x: width / 4, y: 25 / 1.5, z: width / 4},
     // {x: width / 4, y: 25 / 1.5, z: - width / 4},
   ];
