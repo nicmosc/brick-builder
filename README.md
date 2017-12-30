@@ -1,5 +1,7 @@
 # Brick builder
 
+Demo: https://nicmosc.github.io/brick-builder/
+
 ### Usage
 Install with
 ```
