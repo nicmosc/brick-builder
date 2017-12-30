@@ -39,6 +39,11 @@ const Sidebar = ({
       </div>
       <div className={styles.section}>
         <div className={styles.title}>
+          Brick
+        </div>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>
           Scene
         </div>
         <Button
