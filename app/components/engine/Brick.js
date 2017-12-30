@@ -2,7 +2,10 @@ import v4 from 'uuid';
 
 import { mergeMeshes } from 'utils/threejs';
 import { CSSToHex, shadeColor } from 'utils';
-import { width, height, depth } from 'utils/constants';
+import { width, height, depth, base } from 'utils/constants';
+
+
+const knobSize = 7;
 
 
 export default class Brick extends THREE.Mesh {
@@ -18,9 +21,9 @@ export default class Brick extends THREE.Mesh {
     super(...props);
 
     this.position.copy( intersect.point ).add( intersect.face.normal );
-    this.position.divide( new THREE.Vector3(width / 2, height, depth / 2) ).floor()
-      .multiply( new THREE.Vector3(width / 2, height, depth / 2) )
-      .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
+    this.position.divide( new THREE.Vector3(base, height, base) ).floor()
+      .multiply( new THREE.Vector3(base, height, base) )
+      .add( new THREE.Vector3( base, height / 2, base ) );
     this.castShadow = true;
     this.receiveShadow = true;
     this.customId = v4();
@@ -37,7 +40,7 @@ export default class Brick extends THREE.Mesh {
 function createMesh(material) {
   let meshes = [];
   const cubeGeo = new THREE.BoxGeometry( width, height, depth );
-  const cylinderGeo = new THREE.CylinderGeometry( 7, 7, 7, 20);
+  const cylinderGeo = new THREE.CylinderGeometry( knobSize, knobSize, knobSize, 20);
 
   const mesh = new THREE.Mesh(cubeGeo, material);
   meshes.push(mesh);
@@ -50,6 +53,13 @@ function createMesh(material) {
     {x: - 13, y: 25 / 1.5, z: - 13},
     {x: 13, y: 25 / 1.5, z: 13}
   ];
+
+  // const positions = [
+  //   {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
+  //   {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
+  //   // {x: width / 4, y: 25 / 1.5, z: width / 4},
+  //   // {x: width / 4, y: 25 / 1.5, z: - width / 4},
+  // ];
 
   for (var i = 0; i < positions.length; i++) {
     const cylinder = new THREE.Mesh(cylinderGeo, material);

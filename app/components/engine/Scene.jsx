@@ -17,7 +17,7 @@ import {
   Renderer,
 } from 'components/engine/core';
 import { CSSToHex } from 'utils';
-import { width, height, depth, colors } from 'utils/constants';
+import { width, height, depth, colors, base } from 'utils/constants';
 
 import styles from 'styles/components/scene';
 
@@ -149,9 +149,9 @@ class Scene extends React.Component {
       const intersect = intersects[ 0 ];
       if (! isShiftDown) {
         scene.rollOverBrick.position.copy( intersect.point ).add( intersect.face.normal );
-        scene.rollOverBrick.position.divide( new THREE.Vector3( width / 2, height, depth / 2) ).floor()
-          .multiply( new THREE.Vector3( width / 2, height, depth / 2 ) )
-          .add( new THREE.Vector3( width / 2, height / 2, depth / 2 ) );
+        scene.rollOverBrick.position.divide( new THREE.Vector3( base, height, base) ).floor()
+          .multiply( new THREE.Vector3( base, height, base ) )
+          .add( new THREE.Vector3( base, height / 2, base ) );
       }
       if (intersect.object instanceof Brick && (isShiftDown || mode === 'paint')) {
         this.setState({ brickHover: true });
