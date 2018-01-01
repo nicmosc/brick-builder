@@ -1,6 +1,7 @@
 import v4 from 'uuid';
 
 import { mergeMeshes } from 'utils/threejs';
+import BufferSubdivisionModifier from 'utils/threejs/BufferSubdivisionModifier';
 import { CSSToHex, shadeColor, getMeasurementsFromDimensions } from 'utils';
 import { base } from 'utils/constants';
 
@@ -46,8 +47,11 @@ export default class Brick extends THREE.Mesh {
 
 function createMesh(material, width, height, depth) {
   let meshes = [];
-  const cubeGeo = new THREE.BoxGeometry( width, height, depth );
+  const cubeGeo = new THREE.BoxGeometry( width - 0.1, height - 0.1, depth - 0.1 );
   const cylinderGeo = new THREE.CylinderGeometry( knobSize, knobSize, knobSize, 20);
+
+  // const modifier = new THREE.BufferSubdivisionModifier( 2 );
+  // const smooth = modifier.modify( cubeGeo );
 
   const mesh = new THREE.Mesh(cubeGeo, material);
   meshes.push(mesh);
