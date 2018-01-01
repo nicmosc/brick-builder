@@ -15,6 +15,7 @@ const Topbar = ({
   grid,
   onClickToggleGrid,
   brickSize,
+  onClickSetBrick,
 }) => {
   return (
     <div className={styles.topbar}>
@@ -43,7 +44,7 @@ const Topbar = ({
         <div className={styles.title}>
           Brick
         </div>
-        <BrickPicker selectedSize={brickSize} />
+        <BrickPicker selectedSize={brickSize} handleSetBrick={onClickSetBrick} />
       </div>
       <div className={styles.section}>
         <div className={styles.title}>

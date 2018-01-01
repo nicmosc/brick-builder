@@ -10,9 +10,9 @@ class BrickPicker extends React.Component {
   state = {
 
   }
-  
+
   render() {
-    const { selectedSize } = this.props;
+    const { selectedSize, handleSetBrick } = this.props;
     return (
       <div className={styles.brickPicker}>
         <div className={styles.brick}>
@@ -20,7 +20,7 @@ class BrickPicker extends React.Component {
         </div>
         <div className={styles.picker}>
           {bricks.map((b, i) => (
-            <div className={styles.brickExample}>
+            <div key={i} className={styles.brickExample} onClick={() => handleSetBrick(b)}>
               {displayNameFromDimensions(b)}
             </div>
           ))}
