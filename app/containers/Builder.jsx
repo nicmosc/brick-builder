@@ -26,7 +26,8 @@ class Builder extends React.Component {
           onClickToggleGrid={toggleGrid}
           mode={mode}
           color={color}
-          grid={gridVisible} />
+          grid={gridVisible}
+          brickSize={dimensions} />
         <Help />
       </div>
     );

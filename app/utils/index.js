@@ -30,3 +30,8 @@ export function shadeColor(color, percent) {
 export function getMeasurementsFromDimensions({ x, y, z }) {
   return { width: base * x, height: base * y || (base * 2) / 1.5, depth: base * z };
 }
+
+
+export function displayNameFromDimensions(dimensions) {
+  return `${dimensions.x}x${dimensions.z}`;
+}

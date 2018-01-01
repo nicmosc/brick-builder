@@ -1,0 +1,41 @@
+// ----------------
+// BRICK PICKER
+//
+// Component File
+// ----------------
+
+@import '~styles/vars';
+
+
+@brick-height: 60px;
+
+
+:local(.brickPicker) {
+  position: relative;
+}
+
+
+:local(.brick) {
+  color: @white;
+  height: @brick-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+:local(.picker) {
+  position: absolute;
+  top: @brick-height;
+  left: 0;
+  padding: @base-padding;
+  background: @white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+:local(.brickExample) {
+  margin-right: @base-margin;
+}

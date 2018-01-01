@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from 'components/Button';
 import ColorPicker from 'components/ColorPicker';
+import BrickPicker from 'components/BrickPicker';
 
 import styles from 'styles/components/topbar';
 
@@ -13,6 +14,7 @@ const Topbar = ({
   onClickSetColor,
   grid,
   onClickToggleGrid,
+  brickSize,
 }) => {
   return (
     <div className={styles.topbar}>
@@ -41,6 +43,7 @@ const Topbar = ({
         <div className={styles.title}>
           Brick
         </div>
+        <BrickPicker selectedSize={brickSize} />
       </div>
       <div className={styles.section}>
         <div className={styles.title}>
