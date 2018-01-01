@@ -29,3 +29,15 @@ export function toggleGrid() {
     type: TOGGLE_GRID,
   };
 }
+
+
+export const SET_BRICK = 'SET_BRICK';
+
+export function setBrick(brick) {
+  return {
+    type: SET_BRICK,
+    payload: {
+      brick,
+    },
+  };
+}

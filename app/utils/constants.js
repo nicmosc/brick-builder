@@ -1,5 +1,11 @@
-export const dimensions = { x: 3, z: 1 };
+// export const dimensions = { x: 3, z: 1 };
 export const base = 25;
+
+export const bricks = [
+  { x: 2, z: 2 },
+  { x: 2, z: 1 },
+  { x: 1, z: 1 },
+];
 
 // export const height = (base * 2) / 1.5;
 // export const width = base * dimensions.x;
