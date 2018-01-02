@@ -92,6 +92,9 @@ class Scene extends React.Component {
     light.init();
     this.scene.add(light);
 
+    // var spotLightHelper = new THREE.SpotLightHelper( light );
+    // this.scene.add( spotLightHelper );
+
     const ambientLight = new AmbientLight(0x606060);
     this.scene.add(ambientLight);
 
@@ -104,7 +107,7 @@ class Scene extends React.Component {
     this.plane = plane;
     this.scene.add(plane);
 
-    const grid = new THREE.GridHelper( 3000, 240, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
+    const grid = new THREE.GridHelper( 1500, 120, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
     this.grid = grid;
     this.scene.add(grid);
 
