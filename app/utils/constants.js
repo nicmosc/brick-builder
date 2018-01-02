@@ -2,9 +2,9 @@
 export const base = 25;
 
 export const bricks = [
-  { x: 2, z: 2 },
-  { x: 2, z: 1 },
   { x: 1, z: 1 },
+  { x: 2, z: 1 },
+  { x: 2, z: 2 },
   { x: 2, z: 3 },
   { x: 2, z: 4 },
 ];

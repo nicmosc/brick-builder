@@ -5143,10 +5143,6 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-three-orbit-controls@^82.1.0:
-  version "82.1.0"
-  resolved "https://registry.yarnpkg.com/three-orbit-controls/-/three-orbit-controls-82.1.0.tgz#11a7f33d0a20ecec98f098b37780f6537374fab4"
-
 through@2, through@~2.3, through@~2.3.1, through@~2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
