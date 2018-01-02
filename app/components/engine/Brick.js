@@ -19,7 +19,7 @@ export default class Brick extends THREE.Mesh {
       roughness: 0.5,
     });
     const { height, width, depth } = getMeasurementsFromDimensions(dimensions);
-    const props = createMesh(cubeMaterial, width, height, depth);
+    const props = createMesh(cubeMaterial, width, height, depth, dimensions);
     super(...props);
 
     const evenWidth = dimensions.x % 2 === 0;
@@ -45,7 +45,7 @@ export default class Brick extends THREE.Mesh {
 }
 
 
-function createMesh(material, width, height, depth) {
+function createMesh(material, width, height, depth, dimensions) {
   let meshes = [];
   const cubeGeo = new THREE.BoxGeometry( width - 0.1, height - 0.1, depth - 0.1 );
   const cylinderGeo = new THREE.CylinderGeometry( knobSize, knobSize, knobSize, 20);
@@ -58,30 +58,17 @@ function createMesh(material, width, height, depth) {
   mesh.castShadow = true;
   mesh.receiveShadow = true;
 
-  // const positions = [
-  //   {x: 13, y: 25 / 1.5, z: - 13},
-  //   {x: - 13, y: 25 / 1.5, z: 13},
-  //   {x: - 13, y: 25 / 1.5, z: - 13},
-  //   {x: 13, y: 25 / 1.5, z: 13}
-  // ];
+  for ( var i = 0; i < dimensions.x; i++ ) {
+    for ( var j = 0; j < dimensions.z; j++ ) {
+      const cylinder = new THREE.Mesh(cylinderGeo, material);
+      cylinder.position.x = base * i - ((dimensions.x - 1) * base / 2),
+      cylinder.position.y = base / 1.5,  // TODO to be reworked
+      cylinder.position.z = base * j - ((dimensions.z - 1) * base / 2),
 
-  const positions = [
-    // {x: (width / 4) - knobSize, y: 25 / 1.5, z: depth / 4},
-    // {x: (width / 4) - knobSize, y: 25 / 1.5, z: - depth / 4},
-    // {x: width / 4, y: 25 / 1.5, z: width / 4},
-    // {x: width / 4, y: 25 / 1.5, z: - width / 4},
-  ];
-
-  for (var i = 0; i < positions.length; i++) {
-    const cylinder = new THREE.Mesh(cylinderGeo, material);
-
-    cylinder.position.x = positions[i].x;
-    cylinder.position.y = positions[i].y;
-    cylinder.position.z = positions[i].z;
-
-    cylinder.castShadow = true;
-    cylinder.receiveShadow = true;
-    meshes.push( cylinder );
+      cylinder.castShadow = true;
+      cylinder.receiveShadow = true;
+      meshes.push( cylinder );
+    }
   }
 
   const brickGeometry = mergeMeshes(meshes);

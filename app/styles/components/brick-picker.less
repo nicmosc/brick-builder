@@ -21,6 +21,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 
@@ -33,9 +37,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 
 :local(.brickExample) {
   margin-right: @base-margin;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }

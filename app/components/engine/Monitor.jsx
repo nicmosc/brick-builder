@@ -6,7 +6,7 @@ class Monitor extends React.Component {
   componentWillMount() {
     const stats = new Stats();
     stats.domElement.style.position = 'absolute';
-  	stats.domElement.style.bottom = '0px';
+  	stats.domElement.style.bottom = '-30px';
   	stats.domElement.style.zIndex = 100;
     this.stats = stats;
     this.updateSubscriber = PubSub.subscribe('monitor', () => this._update(this));
