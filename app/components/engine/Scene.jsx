@@ -1,6 +1,5 @@
 import React from 'react';
 import PubSub from 'pubsub-js';
-const OrbitControls = require('three-orbit-controls')(THREE);
 import If from 'if-only';
 
 import Detector from 'utils/threejs/detector';
@@ -26,6 +25,7 @@ class Scene extends React.Component {
   state = {
     drag: false,
     isShiftDown: false,
+    isCtrlDown: false,
     objects: [],
   }
 
@@ -256,6 +256,11 @@ class Scene extends React.Component {
         });
         scene.rollOverBrick.visible = false;
         break;
+      case 17:
+        scene.setState({
+          isCtrlDown: true,
+        });
+        break;
     }
   }
 
@@ -267,6 +272,11 @@ class Scene extends React.Component {
           isShiftDown: false,
         });
         scene.rollOverBrick.visible = true && mode === 'build';
+        break;
+      case 17:
+        scene.setState({
+          isCtrlDown: false,
+        });
         break;
     }
   }
@@ -295,11 +305,11 @@ class Scene extends React.Component {
   }
 
   render() {
-    const { brickHover, isShiftDown } = this.state;
+    const { brickHover, isShiftDown, isCtrlDown } = this.state;
     const { mode } = this.props;
     return(
       <div>
-        <div className={styles.scene} style={{  cursor: brickHover ? 'pointer' : 'default' }} ref={(mount) => { this.mount = mount }} />
+        <div className={styles.scene} style={{ cursor: isCtrlDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
         <If cond={isShiftDown && mode === 'build'}>
           <Message>
             <i className="ion-trash-a" />

@@ -1,5 +1,4 @@
 const OrbitControls = require('utils/threejs/OrbitControls')(THREE);
-// import OrbitControls from 'utils/threejs/OrbitControls';
 
 export class Controls extends OrbitControls {
   init() {
