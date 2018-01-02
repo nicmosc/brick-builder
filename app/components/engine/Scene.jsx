@@ -25,7 +25,7 @@ class Scene extends React.Component {
   state = {
     drag: false,
     isShiftDown: false,
-    isCtrlDown: false,
+    isDDown: false,
     objects: [],
   }
 
@@ -143,7 +143,7 @@ class Scene extends React.Component {
   }
 
   _onMouseMove(event, scene) {
-    const { isShiftDown, objects } = this.state;
+    const { isDDown, objects } = this.state;
     const { mode, dimensions } = this.props;
     event.preventDefault();
     const drag = true;
@@ -156,13 +156,13 @@ class Scene extends React.Component {
     const intersects = scene.raycaster.intersectObjects( objects, true );
     if ( intersects.length > 0) {
       const intersect = intersects[ 0 ];
-      if (! isShiftDown) {
+      if (! isDDown) {
         scene.rollOverBrick.position.copy( intersect.point ).add( intersect.face.normal );
         scene.rollOverBrick.position.divide( new THREE.Vector3( base, height, base) ).floor()
           .multiply( new THREE.Vector3( base, height, base ) )
           .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, evenDepth ? base : base / 2 ) );
       }
-      if (intersect.object instanceof Brick && (isShiftDown || mode === 'paint')) {
+      if (intersect.object instanceof Brick && (isDDown || mode === 'paint')) {
         this.setState({ brickHover: true });
       }
       else {
@@ -179,7 +179,7 @@ class Scene extends React.Component {
 
   _onMouseUp(event, scene) {
     const { mode } = this.props;
-    const { drag, objects, isShiftDown } = this.state;
+    const { drag, objects, isDDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
     if (! drag) {
@@ -190,7 +190,7 @@ class Scene extends React.Component {
         const intersect = intersects[ 0 ];
         if (mode === 'build') {
           // delete cube
-          if ( isShiftDown ) {
+          if ( isDDown ) {
             this._deleteCube(intersect);
           // create cube
           } else {
@@ -257,12 +257,12 @@ class Scene extends React.Component {
         scene.setState({
           isShiftDown: true,
         });
-        scene.rollOverBrick.visible = false;
         break;
-      case 17:
+      case 68:
         scene.setState({
-          isCtrlDown: true,
+          isDDown: true,
         });
+        scene.rollOverBrick.visible = false;
         break;
     }
   }
@@ -274,12 +274,12 @@ class Scene extends React.Component {
         scene.setState({
           isShiftDown: false,
         });
-        scene.rollOverBrick.visible = true && mode === 'build';
         break;
-      case 17:
+      case 68:
         scene.setState({
-          isCtrlDown: false,
+          isDDown: false,
         });
+        scene.rollOverBrick.visible = true && mode === 'build';
         break;
     }
   }
@@ -308,12 +308,12 @@ class Scene extends React.Component {
   }
 
   render() {
-    const { brickHover, isShiftDown, isCtrlDown } = this.state;
+    const { brickHover, isShiftDown, isDDown } = this.state;
     const { mode } = this.props;
     return(
       <div>
-        <div className={styles.scene} style={{ cursor: isCtrlDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
-        <If cond={isShiftDown && mode === 'build'}>
+        <div className={styles.scene} style={{ cursor: isShiftDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
+        <If cond={isDDown && mode === 'build'}>
           <Message>
             <i className="ion-trash-a" />
             <span>Deleting bricks</span>

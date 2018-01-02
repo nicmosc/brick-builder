@@ -18,8 +18,6 @@ export class Light extends THREE.SpotLight {
     this.decay = 2;
     // this.shadow.camera.far = 100000;
     // this.shadow.camera.fov = 120;
-
-    console.log(this);
   }
 }
 

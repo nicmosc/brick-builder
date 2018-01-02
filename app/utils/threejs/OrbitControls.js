@@ -655,7 +655,7 @@ module.exports = function( THREE ) {
 
 			event.preventDefault();
 
-			if ( event.button === scope.mouseButtons.PAN || (event.button === scope.mouseButtons.ORBIT && event.ctrlKey) ) {
+			if ( event.button === scope.mouseButtons.PAN || (event.button === scope.mouseButtons.ORBIT && event.shiftKey) ) {
 
 				if ( scope.enablePan === false ) return;
 
