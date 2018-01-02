@@ -26,6 +26,7 @@ class Scene extends React.Component {
     drag: false,
     isShiftDown: false,
     isDDown: false,
+    isRDown: false,
     objects: [],
   }
 
@@ -143,7 +144,7 @@ class Scene extends React.Component {
   }
 
   _onMouseMove(event, scene) {
-    const { isDDown, objects } = this.state;
+    const { isDDown, isRDown, objects } = this.state;
     const { mode, dimensions } = this.props;
     event.preventDefault();
     const drag = true;
@@ -162,7 +163,7 @@ class Scene extends React.Component {
           .multiply( new THREE.Vector3( base, height, base ) )
           .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, evenDepth ? base : base / 2 ) );
       }
-      if (intersect.object instanceof Brick && (isDDown || mode === 'paint')) {
+      if (intersect.object instanceof Brick && (isDDown || isRDown || mode === 'paint')) {
         this.setState({ brickHover: true });
       }
       else {
@@ -264,6 +265,12 @@ class Scene extends React.Component {
         });
         scene.rollOverBrick.visible = false;
         break;
+      case 82:
+        scene.setState({
+          isRDown: true,
+        });
+        scene.rollOverBrick.visible = false;
+        break;
     }
   }
 
@@ -278,6 +285,12 @@ class Scene extends React.Component {
       case 68:
         scene.setState({
           isDDown: false,
+        });
+        scene.rollOverBrick.visible = true && mode === 'build';
+        break;
+      case 82:
+        scene.setState({
+          isRDown: false,
         });
         scene.rollOverBrick.visible = true && mode === 'build';
         break;
@@ -308,7 +321,7 @@ class Scene extends React.Component {
   }
 
   render() {
-    const { brickHover, isShiftDown, isDDown } = this.state;
+    const { brickHover, isShiftDown, isDDown, isRDown } = this.state;
     const { mode } = this.props;
     return(
       <div>
@@ -317,6 +330,12 @@ class Scene extends React.Component {
           <Message>
             <i className="ion-trash-a" />
             <span>Deleting bricks</span>
+          </Message>
+        </If>
+        <If cond={isRDown && mode === 'build'}>
+          <Message>
+            <i className="ion-refresh" />
+            <span>Rotating bricks</span>
           </Message>
         </If>
         <Monitor />
