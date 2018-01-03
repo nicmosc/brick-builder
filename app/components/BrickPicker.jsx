@@ -1,5 +1,6 @@
 import React from 'react';
 import If from 'if-only';
+import isEqual from 'lodash/isEqual';
 
 import { displayNameFromDimensions, getBrickIconFromDimensions } from 'utils';
 import { bricks } from 'utils/constants';
@@ -35,13 +36,18 @@ class BrickPicker extends React.Component {
           <div className={styles.brickIcon}>
             {getBrickIconFromDimensions(selectedSize)}
           </div>
-          {displayNameFromDimensions(selectedSize)}
+          {/* {displayNameFromDimensions(selectedSize)} */}
         </div>
         <If cond={open}>
           <div className={styles.picker} ref={(picker) => this.picker = picker}>
             {bricks.map((b, i) => (
-              <div key={i} className={styles.brickExample} onClick={() => handleSetBrick(b)}>
-                {displayNameFromDimensions(b)}
+              <div key={i} className={styles.brickExample}>
+                <div className={isEqual(selectedSize, b) ? styles.selected : styles.brickThumb} onClick={() => handleSetBrick(b)}>
+                  {getBrickIconFromDimensions(b)}
+                </div>
+                <div className={styles.label}>
+                  {displayNameFromDimensions(b)}
+                </div>
               </div>
             ))}
           </div>

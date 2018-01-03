@@ -26,11 +26,11 @@ export const B1x1 = () => {
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Desktop" transform="translate(-723.000000, -266.000000)">
                 <g id="Group-Copy-4" transform="translate(723.000000, 266.000000)">
-                    <polygon id="Rectangle-4" fill="#F5A623" points="0.5 20 28 39 28 75 0.5 56"></polygon>
+                    <polygon id="Rectangle-4" fill="#EB9507" points="0.5 20 28 39 28 75 0.5 56"></polygon>
                     <polygon id="Rectangle-4-Copy" fill="#FFC058" points="27.5 0.5 55 20 28 39 0.5 20"></polygon>
-                    <polygon id="Rectangle" fill="#EA9100" points="28 39 55 20 55 56 28 75"></polygon>
+                    <polygon id="Rectangle" fill="#D58400" points="28 39 55 20 55 56 28 75"></polygon>
                     <g id="Group-2-Copy" transform="translate(16.000000, 6.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                 </g>
@@ -53,15 +53,15 @@ export const B2x1 = () => {
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Desktop" transform="translate(-561.000000, -213.000000)">
                 <g id="Group-Copy" transform="translate(561.000000, 213.000000)">
-                    <polygon id="Rectangle-4" fill="#F5A623" points="0 20 54 57 54 93 0 56"></polygon>
+                    <polygon id="Rectangle-4" fill="#EB9507" points="0 20 54 57 54 93 0 56"></polygon>
                     <polygon id="Rectangle-4-Copy" fill="#FFC058" points="27 0.5 81 38 54 57 0 20"></polygon>
-                    <polygon id="Rectangle" fill="#EA9100" points="54 57 81 38 81 74 54 93"></polygon>
+                    <polygon id="Rectangle" fill="#D58400" points="54 57 81 38 81 74 54 93"></polygon>
                     <g id="Group-2" transform="translate(16.000000, 5.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy" transform="translate(42.000000, 24.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                 </g>
@@ -84,23 +84,23 @@ export const B2x2 = () => {
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Desktop" transform="translate(-830.000000, -172.000000)">
                 <g id="Group-Copy-3" transform="translate(830.000000, 172.000000)">
-                    <polygon id="Rectangle-4" fill="#F5A623" points="0 41 54 78 54 114 0 77"></polygon>
+                    <polygon id="Rectangle-4" fill="#EB9507" points="0 41 54 78 54 114 0 77"></polygon>
                     <polygon id="Rectangle-4-Copy" fill="#FFC058" points="55.5 0 109.5 39 54 78 0 41"></polygon>
-                    <polygon id="Rectangle" fill="#EA9100" points="54 78 109.5 39 109.5 75 54 114"></polygon>
+                    <polygon id="Rectangle" fill="#D58400" points="54 78 109.5 39 109.5 75 54 114"></polygon>
                     <g id="Group-2" transform="translate(16.000000, 26.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-2" transform="translate(43.000000, 6.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy" transform="translate(42.000000, 45.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-3" transform="translate(69.000000, 25.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                 </g>
@@ -123,31 +123,31 @@ export const B2x3 = () => {
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Desktop" transform="translate(-642.000000, -57.000000)">
                 <g id="Group-Copy-2" transform="translate(642.000000, 57.000000)">
-                    <polygon id="Rectangle-4" fill="#F5A623" points="0 60 54 97 54 133 0 96"></polygon>
+                    <polygon id="Rectangle-4" fill="#EB9507" points="0 60 54 97 54 133 0 96"></polygon>
                     <polygon id="Rectangle-4-Copy" fill="#FFC058" points="82 0.5 136 39.5 54 97 0 60"></polygon>
-                    <polygon id="Rectangle" fill="#EA9100" points="54 97 136 39.5 136 75.5 54 133"></polygon>
+                    <polygon id="Rectangle" fill="#D58400" points="54 97 136 39.5 136 75.5 54 133"></polygon>
                     <g id="Group-2" transform="translate(16.000000, 45.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-2" transform="translate(43.000000, 25.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-4" transform="translate(69.000000, 6.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy" transform="translate(42.000000, 64.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-3" transform="translate(69.000000, 44.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-5" transform="translate(95.000000, 25.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                 </g>
@@ -170,39 +170,39 @@ export const B2x4 = () => {
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Desktop" transform="translate(-422.000000, -79.000000)">
                 <g id="Group" transform="translate(422.000000, 79.000000)">
-                    <polygon id="Rectangle-4" fill="#F5A623" points="0 77 54 114 54 150 0 113"></polygon>
+                    <polygon id="Rectangle-4" fill="#EB9507" points="0 77 54 114 54 150 0 113"></polygon>
                     <polygon id="Rectangle-4-Copy" fill="#FFC058" points="108 0 162 39 54 114 0 77"></polygon>
-                    <polygon id="Rectangle" fill="#EA9100" points="54 114 162 39 162 75 54 150"></polygon>
+                    <polygon id="Rectangle" fill="#D58400" points="54 114 162 39 162 75 54 150"></polygon>
                     <g id="Group-2" transform="translate(16.000000, 62.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-2" transform="translate(43.000000, 42.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-4" transform="translate(69.000000, 23.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-6" transform="translate(97.000000, 5.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy" transform="translate(42.000000, 81.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-3" transform="translate(69.000000, 61.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-5" transform="translate(95.000000, 42.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                     <g id="Group-2-Copy-7" transform="translate(123.000000, 24.000000)">
-                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M12,23 C18.627417,23 24,19.418278 24,15 C24,12.1878766 24,9.68787658 24,7.5 L0,7.5 C1.10578213e-13,9.7172403 1.6586732e-13,12.2172403 1.6586732e-13,15 C1.6586732e-13,19.418278 5.372583,23 12,23 Z" id="Oval-Copy" fill="#EB9507"></path>
                         <ellipse id="Oval" fill="url(#linearGradient-1)" cx="12" cy="8" rx="12" ry="8"></ellipse>
                     </g>
                 </g>
