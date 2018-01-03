@@ -1,4 +1,6 @@
+import React from 'react';
 import { base } from './constants';
+import * as Icons from 'components/Icons';
 
 
 export function CSSToHex(cssColor) {
@@ -34,4 +36,10 @@ export function getMeasurementsFromDimensions({ x, y, z }) {
 
 export function displayNameFromDimensions(dimensions) {
   return `${dimensions.x}x${dimensions.z}`;
+}
+
+
+export function getBrickIconFromDimensions(dimensions) {
+  const Icon = Icons[`B${dimensions.x}x${dimensions.z}`];
+  return <Icon />;
 }

@@ -12,6 +12,9 @@
 
 :local(.brickPicker) {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 
@@ -52,4 +55,10 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+
+:local(.brickIcon) {
+  height: 40px;
+  margin-right: @base-margin-small;
 }

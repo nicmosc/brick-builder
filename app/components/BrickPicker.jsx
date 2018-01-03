@@ -1,7 +1,7 @@
 import React from 'react';
 import If from 'if-only';
 
-import { displayNameFromDimensions } from 'utils';
+import { displayNameFromDimensions, getBrickIconFromDimensions } from 'utils';
 import { bricks } from 'utils/constants';
 
 import styles from 'styles/components/brick-picker';
@@ -32,6 +32,9 @@ class BrickPicker extends React.Component {
     return (
       <div className={styles.brickPicker}>
         <div className={styles.brick} onClick={this._togglePicker}>
+          <div className={styles.brickIcon}>
+            {getBrickIconFromDimensions(selectedSize)}
+          </div>
           {displayNameFromDimensions(selectedSize)}
         </div>
         <If cond={open}>
