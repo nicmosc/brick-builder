@@ -7,7 +7,7 @@ export class Light extends THREE.SpotLight {
     super(0xffffff);
   }
   init() {
-    this.position.set( 1000, 1500, 500 );
+    this.position.set( 1000, 3000, 500 );
     this.intensity = 0.9;
     this.castShadow = true;
     this.shadow = new THREE.LightShadow( new OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 10000) );
@@ -16,6 +16,8 @@ export class Light extends THREE.SpotLight {
     this.shadow.mapSize.height = 4096;
     this.penumbra = 0.5;
     this.decay = 2;
+    // this.shadow.camera.far = 100000;
+    // this.shadow.camera.fov = 120;
   }
 }
 

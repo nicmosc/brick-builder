@@ -2,20 +2,23 @@ import React from 'react';
 
 import Button from 'components/Button';
 import ColorPicker from 'components/ColorPicker';
+import BrickPicker from 'components/BrickPicker';
 
-import styles from 'styles/components/sidebar';
+import styles from 'styles/components/topbar';
 
 
-const Sidebar = ({
+const Topbar = ({
   mode,
   onClickSetMode,
   color,
   onClickSetColor,
   grid,
   onClickToggleGrid,
+  brickSize,
+  onClickSetBrick,
 }) => {
   return (
-    <div className={styles.sidebar}>
+    <div className={styles.topbar}>
       <div className={styles.section}>
         <div className={styles.title}>
           Mode
@@ -39,6 +42,12 @@ const Sidebar = ({
       </div>
       <div className={styles.section}>
         <div className={styles.title}>
+          Brick
+        </div>
+        <BrickPicker selectedSize={brickSize} handleSetBrick={onClickSetBrick} />
+      </div>
+      <div className={styles.section}>
+        <div className={styles.title}>
           Scene
         </div>
         <Button
@@ -52,4 +61,4 @@ const Sidebar = ({
 }
 
 
-export default Sidebar;
+export default Topbar;

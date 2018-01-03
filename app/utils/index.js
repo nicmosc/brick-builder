@@ -1,3 +1,8 @@
+import React from 'react';
+import { base } from './constants';
+import * as Icons from 'components/Icons';
+
+
 export function CSSToHex(cssColor) {
   return parseInt(`0x${cssColor.substring(1)}`, 16);
 }
@@ -22,3 +27,19 @@ export function shadeColor(color, percent) {
 
   return "#"+RR+GG+BB;
 };
+
+
+export function getMeasurementsFromDimensions({ x, y, z }) {
+  return { width: base * x, height: base * y || (base * 2) / 1.5, depth: base * z };
+}
+
+
+export function displayNameFromDimensions(dimensions) {
+  return `${dimensions.x}x${dimensions.z}`;
+}
+
+
+export function getBrickIconFromDimensions(dimensions) {
+  const Icon = Icons[`B${dimensions.x}x${dimensions.z}`];
+  return <Icon />;
+}

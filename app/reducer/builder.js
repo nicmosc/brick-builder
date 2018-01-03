@@ -1,12 +1,13 @@
 import * as BuilderActions from 'actions/builder';
 
-import { colors } from 'utils/constants';
+import { colors, bricks } from 'utils/constants';
 
 
 const initialState = {
   mode: 'build',
   grid: true,
   color: colors[0],
+  brick: bricks[0],
 };
 
 
@@ -31,6 +32,13 @@ export default function builder(state=initialState, action) {
       return {
         ...state,
         grid: !grid,
+      };
+    }
+    case BuilderActions.SET_BRICK: {
+      const { brick } = action.payload;
+      return {
+        ...state,
+        brick,
       };
     }
     default: {

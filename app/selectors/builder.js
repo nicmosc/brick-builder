@@ -11,3 +11,8 @@ export function getColor(state) {
 export function getIsGridVisible(state) {
   return state.builder.grid;
 }
+
+
+export function getBrickDimensions(state) {
+  return state.builder.brick;
+}
