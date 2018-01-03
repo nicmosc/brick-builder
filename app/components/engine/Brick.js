@@ -1,6 +1,6 @@
 import v4 from 'uuid';
 
-import { mergeMeshes } from 'utils/threejs';
+import { mergeMeshes, degToRad } from 'utils/threejs';
 import BufferSubdivisionModifier from 'utils/threejs/BufferSubdivisionModifier';
 import { CSSToHex, shadeColor, getMeasurementsFromDimensions } from 'utils';
 import { base } from 'utils/constants';
@@ -41,6 +41,10 @@ export default class Brick extends THREE.Mesh {
   updateColor(color) {
     this.material.setValues({ color: CSSToHex(color) });
     this.defaultColor = this.material.color;
+  }
+
+  rotate(rotation) {
+    this.rotateY(degToRad(rotation));
   }
 }
 

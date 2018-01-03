@@ -27,6 +27,7 @@ class Scene extends React.Component {
     isShiftDown: false,
     isDDown: false,
     isRDown: false,
+    rotation: 0,
     objects: [],
   }
 
@@ -65,7 +66,7 @@ class Scene extends React.Component {
       this.grid.visible = false;
     }
     else if (prevProps.dimensions.x !== dimensions.x || prevProps.dimensions.z !== dimensions.z) {
-      this.rollOverBrick._setShape(dimensions);
+      this.rollOverBrick.setShape(dimensions);
     }
   }
 
@@ -180,7 +181,7 @@ class Scene extends React.Component {
 
   _onMouseUp(event, scene) {
     const { mode } = this.props;
-    const { drag, objects, isDDown } = this.state;
+    const { drag, objects, isDDown, isRDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
     if (! drag) {
@@ -193,9 +194,10 @@ class Scene extends React.Component {
           // delete cube
           if ( isDDown ) {
             this._deleteCube(intersect);
+          }
           // create cube
-          } else {
-            this._createCube(intersect);
+          else {
+            this._createCube(intersect, scene.rollOverBrick);
           }
         }
         else if (mode === 'paint') {
@@ -205,8 +207,8 @@ class Scene extends React.Component {
     }
   }
 
-  _createCube(intersect) {
-    const { objects } = this.state;
+  _createCube(intersect, rollOverBrick) {
+    const { objects, rotation } = this.state;
     const { brickColor, dimensions } = this.props;
     let canCreate = true;
     const { width, depth } = getMeasurementsFromDimensions(dimensions);
@@ -227,6 +229,8 @@ class Scene extends React.Component {
     }
     if (canCreate) {
       const brick = new Brick(intersect, brickColor, dimensions);
+      brick.rotation.y = rollOverBrick.rotation.y;
+      brick.geometry.translate(rollOverBrick.translation, 0, rollOverBrick.translation);
       this.scene.add(brick);
       this.setState({
         objects: [ ...objects, brick],
@@ -238,7 +242,7 @@ class Scene extends React.Component {
     const { objects } = this.state;
     if (intersect.object != this.plane) {
       this.scene.remove(intersect.object);
-      // fix below
+      intersect.object.geometry.dispose();
       this.setState({
         objects: objects.filter((o) => o !== intersect.object),
       });
@@ -266,10 +270,11 @@ class Scene extends React.Component {
         scene.rollOverBrick.visible = false;
         break;
       case 82:
+        scene.rollOverBrick.rotate( Math.PI / 2 );
         scene.setState({
           isRDown: true,
+          rotation: scene.rollOverBrick.rotation.y,
         });
-        scene.rollOverBrick.visible = false;
         break;
     }
   }
@@ -292,7 +297,6 @@ class Scene extends React.Component {
         scene.setState({
           isRDown: false,
         });
-        scene.rollOverBrick.visible = true && mode === 'build';
         break;
     }
   }

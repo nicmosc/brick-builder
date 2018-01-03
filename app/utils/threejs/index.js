@@ -17,3 +17,13 @@ export function collisonXYZ(o1, o2) {
     return false;
   return true;
 }
+
+
+export function degToRad(angle) {
+  return angle * (Math.PI / 180);
+}
+
+
+export function radToDeg(angle) {
+  return 360 - (angle / Math.PI) * 180;
+}
