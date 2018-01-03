@@ -16,7 +16,7 @@ const HelpModal = ({ open, toggleClose }) => {
           Brick Builder
         </h1>
         <h3>What is this?</h3>
-        <p>Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the side menu!</p>
+        <p>Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the menu!</p>
         <h2 style={{ textAlign: 'center' }}>
           Available commands
         </h2>
@@ -24,13 +24,13 @@ const HelpModal = ({ open, toggleClose }) => {
           <div className={styles.icon}>
             <i className="ion-hammer" />
           </div>
-          <div>In BUILD mode you can place bricks with a <strong>RIGHT</strong> click. If you press <strong>d</strong> at the same time you delete bricks.</div>
+          <div style={{ flex: 1 }}>In BUILD mode you can place bricks with a <strong>LEFT</strong> click. If you press <strong>d</strong> at the same time you delete bricks. Choose between different sizes in the menu bar.</div>
         </div>
         <div className={styles.section}>
           <div className={styles.icon}>
             <i className="ion-paintbrush" />
           </div>
-          <div>In PAINT mode you set the chosen color (on the sidebar) to existing bricks.</div>
+          <div style={{ flex: 1 }}>In PAINT mode you set the chosen color (on the menu bar) to existing bricks.</div>
         </div>
         <div className={styles.github}>
           <i className="ion-social-github" />
