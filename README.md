@@ -24,7 +24,7 @@ yarn build
 - [ ] Export/import
 - [ ] Undo
 - [ ] Reset scene (delete all)
-- [ ] Different brick sizes (shapes)
+- [x] Different brick sizes (shapes)
 - [x] Show/hide grid
 - [ ] Control UI (rotate, drag)
 - [ ] Save image
