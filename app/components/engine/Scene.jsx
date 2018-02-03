@@ -328,7 +328,7 @@ class Scene extends React.Component {
     const { brickHover, isShiftDown, isDDown, isRDown } = this.state;
     const { mode } = this.props;
     return(
-      <div style={{ height: '100%' }} ref={(sceneContainer) => { this.sceneContainer = sceneContainer }}>
+      <div>
         <div className={styles.scene} style={{ cursor: isShiftDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
         <If cond={isDDown && mode === 'build'}>
           <Message>
