@@ -8,10 +8,18 @@ class Sidebar extends React.Component {
     const { utilsOpen } = this.props;
     return (
       <div className={utilsOpen ? styles.visible : styles.sidebar}>
-        <div className={styles.separator} />
         <div className={styles.content}>
           <div className={styles.row}>
-            Reset scene
+            <i className="ion-trash-a" />
+            <span>Reset scene</span>
+          </div>
+          <div className={styles.row}>
+            <i className="ion-log-out" />
+            <span>Export scene</span>
+          </div>
+          <div className={styles.row}>
+            <i className="ion-log-in" />
+            <span>Import scene</span>
           </div>
         </div>
       </div>

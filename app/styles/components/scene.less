@@ -6,15 +6,24 @@
 
 @import '~styles/vars';
 
+@shift-amount: 100px;
+
 
 :local(.scene) {
   position: absolute;
   height: 100%;
   width: 100%;
   pointer-events: none;
+  transition: transform @base-transition-time ease-in-out;
 
   // allow pointer events to all children
   * {
     pointer-events: auto;
   }
+}
+
+
+:local(.shifted) {
+  composes: scene;
+  transform: translate3d(-@shift-amount, 0, 0);
 }

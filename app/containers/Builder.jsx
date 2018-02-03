@@ -41,7 +41,7 @@ class Builder extends React.Component {
           onClickToggleUtils={toggleUtils}>
           <Sidebar utilsOpen={utilsOpen} />
         </Topbar>
-        <Scene brickColor={color} mode={mode} grid={gridVisible} dimensions={dimensions} />
+        <Scene brickColor={color} mode={mode} grid={gridVisible} dimensions={dimensions} shifted={utilsOpen} />
         <Help />
       </div>
     );
