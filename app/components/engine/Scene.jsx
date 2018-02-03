@@ -109,7 +109,7 @@ class Scene extends React.Component {
     this.plane = plane;
     this.scene.add(plane);
 
-    const grid = new THREE.GridHelper( 1500, 120, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
+    const grid = new THREE.GridHelper( 1500, 60, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
     this.grid = grid;
     this.scene.add(grid);
 
