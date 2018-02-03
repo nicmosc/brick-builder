@@ -28,7 +28,7 @@ class Scene extends React.Component {
     isDDown: false,
     isRDown: false,
     rotation: 0,
-    objects: [],
+    // objects: [],
   }
 
   constructor(props) {
@@ -112,10 +112,6 @@ class Scene extends React.Component {
     const grid = new THREE.GridHelper( 1500, 60, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
     this.grid = grid;
     this.scene.add(grid);
-
-    this.setState({
-      objects: [ ...this.state.objects, plane ],
-    });
   }
 
   _initUtils() {
@@ -145,8 +141,8 @@ class Scene extends React.Component {
   }
 
   _onMouseMove(event, scene) {
-    const { isDDown, isRDown, objects } = this.state;
-    const { mode, dimensions } = this.props;
+    const { isDDown, isRDown } = this.state;
+    const { mode, dimensions, objects } = this.props;
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
@@ -155,7 +151,7 @@ class Scene extends React.Component {
     const evenDepth = dimensions.z % 2 === 0;
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
-    const intersects = scene.raycaster.intersectObjects( objects, true );
+    const intersects = scene.raycaster.intersectObjects( [ ...objects, this.plane ], true );
     if ( intersects.length > 0) {
       const intersect = intersects[ 0 ];
       if (! isDDown) {
@@ -180,14 +176,14 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { mode } = this.props;
-    const { drag, objects, isDDown, isRDown } = this.state;
+    const { mode, objects } = this.props;
+    const { drag, isDDown, isRDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
     if (! drag) {
       scene.mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
       scene.raycaster.setFromCamera( scene.mouse, scene.camera );
-      const intersects = scene.raycaster.intersectObjects( objects );
+      const intersects = scene.raycaster.intersectObjects( [ ...objects, this.plane ] );
       if ( intersects.length > 0 ) {
         const intersect = intersects[ 0 ];
         if (mode === 'build') {
@@ -208,11 +204,11 @@ class Scene extends React.Component {
   }
 
   _createCube(intersect, rollOverBrick) {
-    const { objects, rotation } = this.state;
-    const { brickColor, dimensions } = this.props;
+    const { rotation } = this.state;
+    const { brickColor, dimensions, objects, addObject } = this.props;
     let canCreate = true;
     const { width, depth } = getMeasurementsFromDimensions(dimensions);
-    const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
+    const bricks = objects;
     const meshBoundingBox = new THREE.Box3().setFromObject(this.rollOverBrick);
     for (var i = 0; i < bricks.length; i++) {
       const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
@@ -232,27 +228,24 @@ class Scene extends React.Component {
       brick.rotation.y = rollOverBrick.rotation.y;
       brick.geometry.translate(rollOverBrick.translation, 0, rollOverBrick.translation);
       this.scene.add(brick);
-      this.setState({
-        objects: [ ...objects, brick],
-      });
+      addObject(brick);
     }
   }
 
   _deleteCube(intersect) {
-    const { objects } = this.state;
-    if (intersect.object != this.plane) {
+    const { removeObject } = this.props;
+    if (intersect.object !== this.plane) {
       this.scene.remove(intersect.object);
       intersect.object.geometry.dispose();
-      this.setState({
-        objects: objects.filter((o) => o !== intersect.object),
-      });
+      removeObject(intersect.object.customId);
     }
   }
 
   _paintCube(intersect) {
-    const { brickColor } = this.props;
-    if (intersect.object != this.plane) {
+    const { brickColor, updateObject } = this.props;
+    if (intersect.object !== this.plane) {
       intersect.object.updateColor(brickColor);
+      updateObject(intersect.object);
     }
   }
 

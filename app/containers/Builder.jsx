@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { getMode, getColor, getIsGridVisible, getBrickDimensions, getAreUtilsOpen } from 'selectors';
-import { setMode, setColor, toggleGrid, setBrick, toggleUtils } from 'actions';
+import { getMode, getColor, getIsGridVisible, getBrickDimensions, getAreUtilsOpen, getBricks } from 'selectors';
+import { setMode, setColor, toggleGrid, setBrick, toggleUtils, addBrick, removeBrick, updateBrick } from 'actions';
 import Scene from 'components/engine/Scene';
 import Topbar from 'components/Topbar';
 import Help from 'components/Help';
@@ -25,6 +25,10 @@ class Builder extends React.Component {
       setBrick,
       utilsOpen,
       toggleUtils,
+      removeBrick,
+      addBrick,
+      bricks,
+      updateBrick,
     } = this.props;
     return (
       <div className={styles.builder}>
@@ -41,7 +45,16 @@ class Builder extends React.Component {
           onClickToggleUtils={toggleUtils}>
           <Sidebar utilsOpen={utilsOpen} />
         </Topbar>
-        <Scene brickColor={color} mode={mode} grid={gridVisible} dimensions={dimensions} shifted={utilsOpen} />
+        <Scene
+          brickColor={color}
+          objects={bricks}
+          mode={mode}
+          grid={gridVisible}
+          dimensions={dimensions}
+          shifted={utilsOpen}
+          removeObject={removeBrick}
+          addObject={addBrick}
+          updateObject={updateBrick} />
         <Help />
       </div>
     );
@@ -55,6 +68,7 @@ const mapStateToProps = (state) => ({
   gridVisible: getIsGridVisible(state),
   dimensions: getBrickDimensions(state),
   utilsOpen: getAreUtilsOpen(state),
+  bricks: getBricks(state),
 });
 
 
@@ -64,6 +78,9 @@ const mapDispatchToProps = {
   toggleGrid,
   setBrick,
   toggleUtils,
+  removeBrick,
+  addBrick,
+  updateBrick,
 };
 
 
