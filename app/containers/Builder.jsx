@@ -7,6 +7,7 @@ import { setMode, setColor, toggleGrid, setBrick, toggleUtils } from 'actions';
 import Scene from 'components/engine/Scene';
 import Topbar from 'components/Topbar';
 import Help from 'components/Help';
+import Sidebar from 'components/Sidebar';
 
 import styles from 'styles/containers/builder';
 
@@ -27,7 +28,6 @@ class Builder extends React.Component {
     } = this.props;
     return (
       <div className={styles.builder}>
-        <Scene brickColor={color} mode={mode} grid={gridVisible} dimensions={dimensions} />
         <Topbar
           onClickSetMode={setMode}
           onClickSetColor={setColor}
@@ -38,7 +38,10 @@ class Builder extends React.Component {
           brickSize={dimensions}
           onClickSetBrick={setBrick}
           utilsOpen={utilsOpen}
-          onClickToggleUtils={toggleUtils} />
+          onClickToggleUtils={toggleUtils}>
+          <Sidebar utilsOpen={utilsOpen} />
+        </Topbar>
+        <Scene brickColor={color} mode={mode} grid={gridVisible} dimensions={dimensions} />
         <Help />
       </div>
     );

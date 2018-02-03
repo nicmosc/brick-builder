@@ -5,3 +5,37 @@
 // ----------------
 
 @import '~styles/vars';
+
+@separator-height: 10px;
+
+
+:local(.sidebar) {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: @secondary-blue;
+  height: ~'calc(100vh - 100%)';
+  transform: translateX(100%);
+  transition: all @base-transition-time ease-in-out;
+}
+
+
+:local(.visible) {
+  composes: sidebar;
+  transform: translateX(0);
+}
+
+
+:local(.separator) {
+  position: relative;
+  height: @separator-height;
+  background: @tertiary-blue;
+  width: 100%;
+  margin-bottom: @base-padding-small;
+}
+
+
+:local(.content) {
+  padding: @base-padding;
+  color: @white;
+}

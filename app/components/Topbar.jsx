@@ -18,6 +18,7 @@ const Topbar = ({
   onClickSetBrick,
   utilsOpen,
   onClickToggleUtils,
+  children
 }) => {
   return (
     <div className={styles.topbar}>
@@ -65,6 +66,7 @@ const Topbar = ({
           icon="navicon-round"
           text="Utils" />
       </div>
+      {children}
     </div>
   );
 }
