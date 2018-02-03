@@ -16,6 +16,8 @@ const Topbar = ({
   onClickToggleGrid,
   brickSize,
   onClickSetBrick,
+  utilsOpen,
+  onClickToggleUtils,
 }) => {
   return (
     <div className={styles.topbar}>
@@ -55,6 +57,13 @@ const Topbar = ({
           onClick={onClickToggleGrid}
           icon="grid"
           text="Grid" />
+      </div>
+      <div className={styles.rightSection}>
+        <Button
+          active={utilsOpen}
+          onClick={onClickToggleUtils}
+          icon="navicon-round"
+          text="Utils" />
       </div>
     </div>
   );
