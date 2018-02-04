@@ -5,11 +5,11 @@ import styles from '../styles/components/sidebar';
 
 class Sidebar extends React.Component {
   render() {
-    const { utilsOpen } = this.props;
+    const { utilsOpen, resetScene } = this.props;
     return (
       <div className={utilsOpen ? styles.visible : styles.sidebar}>
         <div className={styles.content}>
-          <div className={styles.row}>
+          <div className={styles.row} onClick={resetScene}>
             <i className="ion-trash-a" />
             <span>Reset scene</span>
           </div>

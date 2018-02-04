@@ -28,7 +28,7 @@ class Scene extends React.Component {
     isDDown: false,
     isRDown: false,
     rotation: 0,
-    // objects: [],
+    coreObjects: [],
   }
 
   constructor(props) {
@@ -43,15 +43,15 @@ class Scene extends React.Component {
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
     this._initCore();
-    this._initEnv();
     this._initUtils();
+    this._initEnv();
 
     this._setEventListeners();
     this._start();
   }
 
   componentDidUpdate(prevProps) {
-    const { mode, grid, dimensions } = this.props;
+    const { mode, grid, dimensions, objects } = this.props;
     if (mode !== prevProps.mode && mode === 'paint') {
       this.rollOverBrick.visible = false;
     }
@@ -67,6 +67,10 @@ class Scene extends React.Component {
     }
     else if (prevProps.dimensions.x !== dimensions.x || prevProps.dimensions.z !== dimensions.z) {
       this.rollOverBrick.setShape(dimensions);
+    }
+
+    if (objects.length !== prevProps.objects.length) {
+      this._setObjectsFromState();
     }
   }
 
@@ -112,6 +116,8 @@ class Scene extends React.Component {
     const grid = new THREE.GridHelper( 1500, 60, new THREE.Color( 0xbfbfbf ), new THREE.Color( 0xdedede ) );
     this.grid = grid;
     this.scene.add(grid);
+
+    this.setState({ coreObjects: [ light, ambientLight, pointLight, plane, grid, this.rollOverBrick ] });
   }
 
   _initUtils() {
@@ -123,6 +129,12 @@ class Scene extends React.Component {
     this.raycaster = raycaster;
     const mouse = new THREE.Vector2();
     this.mouse = mouse;
+  }
+
+  _setObjectsFromState() {
+    const { objects } = this.props;
+    const { coreObjects } = this.state;
+    this.scene.children = [ ...objects, ...coreObjects ];
   }
 
   _setEventListeners() {
@@ -227,7 +239,7 @@ class Scene extends React.Component {
       const brick = new Brick(intersect, brickColor, dimensions);
       brick.rotation.y = rollOverBrick.rotation.y;
       brick.geometry.translate(rollOverBrick.translation, 0, rollOverBrick.translation);
-      this.scene.add(brick);
+      // this.scene.add(brick);
       addObject(brick);
     }
   }
@@ -235,7 +247,7 @@ class Scene extends React.Component {
   _deleteCube(intersect) {
     const { removeObject } = this.props;
     if (intersect.object !== this.plane) {
-      this.scene.remove(intersect.object);
+      // this.scene.remove(intersect.object);
       intersect.object.geometry.dispose();
       removeObject(intersect.object.customId);
     }

@@ -30,6 +30,9 @@ export default function scene(state=initialState, action) {
         bricks: [ ...filteredBricks, brick ],
       };
     }
+    case SceneActions.RESET_SCENE: {
+      return initialState;
+    }
     default: {
       return state;
     }

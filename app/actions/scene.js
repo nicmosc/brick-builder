@@ -32,3 +32,12 @@ export function updateBrick(brick) {
     },
   };
 }
+
+
+export const RESET_SCENE = 'RESET_SCENE';
+
+export function resetScene() {
+  return {
+    type: RESET_SCENE,
+  };
+}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { getMode, getColor, getIsGridVisible, getBrickDimensions, getAreUtilsOpen, getBricks } from 'selectors';
-import { setMode, setColor, toggleGrid, setBrick, toggleUtils, addBrick, removeBrick, updateBrick } from 'actions';
+import { setMode, setColor, toggleGrid, setBrick, toggleUtils, addBrick, removeBrick, updateBrick, resetScene } from 'actions';
 import Scene from 'components/engine/Scene';
 import Topbar from 'components/Topbar';
 import Help from 'components/Help';
@@ -29,6 +29,7 @@ class Builder extends React.Component {
       addBrick,
       bricks,
       updateBrick,
+      resetScene,
     } = this.props;
     return (
       <div className={styles.builder}>
@@ -43,7 +44,7 @@ class Builder extends React.Component {
           onClickSetBrick={setBrick}
           utilsOpen={utilsOpen}
           onClickToggleUtils={toggleUtils}>
-          <Sidebar utilsOpen={utilsOpen} />
+          <Sidebar utilsOpen={utilsOpen} resetScene={resetScene} />
         </Topbar>
         <Scene
           brickColor={color}
@@ -81,6 +82,7 @@ const mapDispatchToProps = {
   removeBrick,
   addBrick,
   updateBrick,
+  resetScene,
 };
 
 
