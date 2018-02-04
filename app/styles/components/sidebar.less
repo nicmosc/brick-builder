@@ -43,19 +43,23 @@
 
 :local(.row) {
   margin: @base-margin * 2 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   color: @white;
   font-size: 0.9em;
   transition: all @base-transition-time ease-in-out;
 
-  > i {
-    margin-right: 10px;
-  }
-
   &:hover {
     color: @tertiary-blue;
     cursor: pointer;
+  }
+}
+
+
+:local(.text) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  > i {
+    margin-right: 10px;
   }
 }

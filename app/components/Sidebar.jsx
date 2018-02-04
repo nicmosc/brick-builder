@@ -2,6 +2,8 @@ import React from 'react';
 import { saveAs } from 'file-saver';
 import autobind from 'autobind-decorator';
 
+import FileUploader from './FileUploader';
+
 import styles from '../styles/components/sidebar';
 
 
@@ -12,16 +14,24 @@ class Sidebar extends React.Component {
       <div className={utilsOpen ? styles.visible : styles.sidebar}>
         <div className={styles.content}>
           <div className={styles.row} onClick={resetScene}>
-            <i className="ion-trash-a" />
-            <span>Reset scene</span>
+            <div className={styles.text}>
+              <i className="ion-trash-a" />
+              <span>Reset scene</span>
+            </div>
           </div>
           <div className={styles.row} onClick={this._exportFile}>
-            <i className="ion-log-out" />
-            <span>Export scene</span>
+            <div className={styles.text}>
+              <i className="ion-log-out" />
+              <span>Export scene</span>
+            </div>
           </div>
           <div className={styles.row}>
-            <i className="ion-log-in" />
-            <span>Import scene</span>
+            <FileUploader>
+              <div className={styles.text}>
+                <i className="ion-log-in" />
+                <span>Import scene</span>
+              </div>
+            </FileUploader>
           </div>
         </div>
       </div>
