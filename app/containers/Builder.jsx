@@ -44,7 +44,7 @@ class Builder extends React.Component {
           onClickSetBrick={setBrick}
           utilsOpen={utilsOpen}
           onClickToggleUtils={toggleUtils}>
-          <Sidebar utilsOpen={utilsOpen} resetScene={resetScene} />
+          <Sidebar utilsOpen={utilsOpen} resetScene={resetScene} objects={bricks} />
         </Topbar>
         <Scene
           brickColor={color}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { saveAs } from 'file-saver';
+import autobind from 'autobind-decorator';
 
 import styles from '../styles/components/sidebar';
 
@@ -13,7 +15,7 @@ class Sidebar extends React.Component {
             <i className="ion-trash-a" />
             <span>Reset scene</span>
           </div>
-          <div className={styles.row}>
+          <div className={styles.row} onClick={this._exportFile}>
             <i className="ion-log-out" />
             <span>Export scene</span>
           </div>
@@ -24,6 +26,17 @@ class Sidebar extends React.Component {
         </div>
       </div>
     );
+  }
+
+  @autobind
+  _exportFile() {
+    const { objects } = this.props;
+    const fileName = 'scene.json';
+    var fileToSave = new Blob([JSON.stringify(objects)], {
+      type: 'application/json',
+      name: fileName,
+    });
+    saveAs(fileToSave, fileName);
   }
 }
 
