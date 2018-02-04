@@ -16,6 +16,7 @@
   position: absolute;
   bottom: @base-margin;
   right: @base-margin;
+  z-index: 99;
 }
 
 
@@ -34,6 +35,16 @@
   &:hover {
     cursor: pointer;
     color: lighten(@primary-blue, 20%);
+  }
+}
+
+
+:local(.inversed) {
+  composes: text;
+  color: @white;
+
+  &:hover {
+    color: @tertiary-blue;
   }
 }
 

@@ -56,7 +56,7 @@ class Builder extends React.Component {
           removeObject={removeBrick}
           addObject={addBrick}
           updateObject={updateBrick} />
-        <Help />
+        <Help inversed={utilsOpen} />
       </div>
     );
   }
