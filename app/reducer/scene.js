@@ -33,6 +33,12 @@ export default function scene(state=initialState, action) {
     case SceneActions.RESET_SCENE: {
       return initialState;
     }
+    case SceneActions.SET_SCENE: {
+      const { bricks } = action.payload;
+      return {
+        bricks,
+      };
+    }
     default: {
       return state;
     }

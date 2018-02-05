@@ -9,7 +9,7 @@ import styles from '../styles/components/sidebar';
 
 class Sidebar extends React.Component {
   render() {
-    const { utilsOpen, resetScene } = this.props;
+    const { utilsOpen, resetScene, importScene } = this.props;
     return (
       <div className={utilsOpen ? styles.visible : styles.sidebar}>
         <div className={styles.content}>
@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
             </div>
           </div>
           <div className={styles.row}>
-            <FileUploader>
+            <FileUploader onFinish={importScene}>
               <div className={styles.text}>
                 <i className="ion-log-in" />
                 <span>Import scene</span>

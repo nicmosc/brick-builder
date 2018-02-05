@@ -41,3 +41,15 @@ export function resetScene() {
     type: RESET_SCENE,
   };
 }
+
+
+export const SET_SCENE = 'SET_SCENE';
+
+export function setScene(bricks) {
+  return {
+    type: SET_SCENE,
+    payload: {
+      bricks,
+    },
+  };
+}
