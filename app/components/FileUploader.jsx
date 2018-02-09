@@ -26,13 +26,11 @@ class FileUploader extends React.Component {
     reader.onloadend = () => {
       const uri = reader.result;
       const decoded = JSON.parse(uri);
+      console.log('done reading');
       onFinish(decoded);
-      // this.setState({
-      //   file: file,
-      //   filePreviewUrl: reader.result,
-      // });
     }
     reader.readAsText(file);
+    console.log('end of code');
   }
 }
 

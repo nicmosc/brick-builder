@@ -163,7 +163,6 @@ class Scene extends React.Component {
     const evenDepth = dimensions.z % 2 === 0;
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
-    console.log(objects[0]?.constructor.name);
     const intersects = scene.raycaster.intersectObjects( [ ...objects, this.plane ], true );
     if ( intersects.length > 0) {
       const intersect = intersects[ 0 ];
@@ -237,10 +236,8 @@ class Scene extends React.Component {
       }
     }
     if (canCreate) {
-      const brick = new Brick(intersect, brickColor, dimensions);
-      brick.rotation.y = rollOverBrick.rotation.y;
-      brick.geometry.translate(rollOverBrick.translation, 0, rollOverBrick.translation);
-      // this.scene.add(brick);
+      const { translation, rotation } = rollOverBrick;
+      const brick = new Brick(intersect, brickColor, dimensions, rotation.y, translation);
       addObject(brick);
     }
   }
@@ -248,7 +245,6 @@ class Scene extends React.Component {
   _deleteCube(intersect) {
     const { removeObject } = this.props;
     if (intersect.object !== this.plane) {
-      // this.scene.remove(intersect.object);
       intersect.object.geometry.dispose();
       removeObject(intersect.object.customId);
     }

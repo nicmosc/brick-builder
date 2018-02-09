@@ -71,7 +71,7 @@ class Builder extends React.Component {
           mode={mode}
           grid={gridVisible}
           dimensions={dimensions}
-          shifted={utilsOpen}
+          // shifted={utilsOpen}
           removeObject={removeBrick}
           addObject={addBrick}
           updateObject={updateBrick} />
