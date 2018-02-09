@@ -28,7 +28,7 @@ class Scene extends React.Component {
     isDDown: false,
     isRDown: false,
     rotation: 0,
-    objects: [],
+    coreObjects: [],
   }
 
   constructor(props) {
@@ -43,15 +43,15 @@ class Scene extends React.Component {
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
     this._initCore();
-    this._initEnv();
     this._initUtils();
+    this._initEnv();
 
     this._setEventListeners();
     this._start();
   }
 
   componentDidUpdate(prevProps) {
-    const { mode, grid, dimensions } = this.props;
+    const { mode, grid, dimensions, objects } = this.props;
     if (mode !== prevProps.mode && mode === 'paint') {
       this.rollOverBrick.visible = false;
     }
@@ -67,6 +67,10 @@ class Scene extends React.Component {
     }
     else if (prevProps.dimensions.x !== dimensions.x || prevProps.dimensions.z !== dimensions.z) {
       this.rollOverBrick.setShape(dimensions);
+    }
+
+    if (objects.length !== prevProps.objects.length) {
+      this._setObjectsFromState();
     }
   }
 
@@ -113,9 +117,7 @@ class Scene extends React.Component {
     this.grid = grid;
     this.scene.add(grid);
 
-    this.setState({
-      objects: [ ...this.state.objects, plane ],
-    });
+    this.setState({ coreObjects: [ light, ambientLight, pointLight, plane, grid, this.rollOverBrick ] });
   }
 
   _initUtils() {
@@ -127,6 +129,12 @@ class Scene extends React.Component {
     this.raycaster = raycaster;
     const mouse = new THREE.Vector2();
     this.mouse = mouse;
+  }
+
+  _setObjectsFromState() {
+    const { objects } = this.props;
+    const { coreObjects } = this.state;
+    this.scene.children = [ ...objects, ...coreObjects ];
   }
 
   _setEventListeners() {
@@ -145,8 +153,8 @@ class Scene extends React.Component {
   }
 
   _onMouseMove(event, scene) {
-    const { isDDown, isRDown, objects } = this.state;
-    const { mode, dimensions } = this.props;
+    const { isDDown, isRDown } = this.state;
+    const { mode, dimensions, objects } = this.props;
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
@@ -155,7 +163,7 @@ class Scene extends React.Component {
     const evenDepth = dimensions.z % 2 === 0;
     scene.mouse.set( ( (event.clientX / window.innerWidth) ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
     scene.raycaster.setFromCamera( scene.mouse, scene.camera );
-    const intersects = scene.raycaster.intersectObjects( objects, true );
+    const intersects = scene.raycaster.intersectObjects( [ ...objects, this.plane ], true );
     if ( intersects.length > 0) {
       const intersect = intersects[ 0 ];
       if (! isDDown) {
@@ -180,14 +188,14 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { mode } = this.props;
-    const { drag, objects, isDDown, isRDown } = this.state;
+    const { mode, objects } = this.props;
+    const { drag, isDDown, isRDown } = this.state;
     if (event.target.localName !== 'canvas') return;
     event.preventDefault();
     if (! drag) {
       scene.mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
       scene.raycaster.setFromCamera( scene.mouse, scene.camera );
-      const intersects = scene.raycaster.intersectObjects( objects );
+      const intersects = scene.raycaster.intersectObjects( [ ...objects, this.plane ] );
       if ( intersects.length > 0 ) {
         const intersect = intersects[ 0 ];
         if (mode === 'build') {
@@ -208,11 +216,11 @@ class Scene extends React.Component {
   }
 
   _createCube(intersect, rollOverBrick) {
-    const { objects, rotation } = this.state;
-    const { brickColor, dimensions } = this.props;
+    const { rotation } = this.state;
+    const { brickColor, dimensions, objects, addObject } = this.props;
     let canCreate = true;
     const { width, depth } = getMeasurementsFromDimensions(dimensions);
-    const bricks = objects.filter((o) => o.geometry.type === 'Geometry');
+    const bricks = objects;
     const meshBoundingBox = new THREE.Box3().setFromObject(this.rollOverBrick);
     for (var i = 0; i < bricks.length; i++) {
       const brickBoundingBox = new THREE.Box3().setFromObject(bricks[i]);
@@ -228,31 +236,25 @@ class Scene extends React.Component {
       }
     }
     if (canCreate) {
-      const brick = new Brick(intersect, brickColor, dimensions);
-      brick.rotation.y = rollOverBrick.rotation.y;
-      brick.geometry.translate(rollOverBrick.translation, 0, rollOverBrick.translation);
-      this.scene.add(brick);
-      this.setState({
-        objects: [ ...objects, brick],
-      });
+      const { translation, rotation } = rollOverBrick;
+      const brick = new Brick(intersect, brickColor, dimensions, rotation.y, translation);
+      addObject(brick);
     }
   }
 
   _deleteCube(intersect) {
-    const { objects } = this.state;
-    if (intersect.object != this.plane) {
-      this.scene.remove(intersect.object);
+    const { removeObject } = this.props;
+    if (intersect.object !== this.plane) {
       intersect.object.geometry.dispose();
-      this.setState({
-        objects: objects.filter((o) => o !== intersect.object),
-      });
+      removeObject(intersect.object.customId);
     }
   }
 
   _paintCube(intersect) {
-    const { brickColor } = this.props;
-    if (intersect.object != this.plane) {
+    const { brickColor, updateObject } = this.props;
+    if (intersect.object !== this.plane) {
       intersect.object.updateColor(brickColor);
+      updateObject(intersect.object);
     }
   }
 
@@ -326,10 +328,10 @@ class Scene extends React.Component {
 
   render() {
     const { brickHover, isShiftDown, isDDown, isRDown } = this.state;
-    const { mode } = this.props;
+    const { mode, shifted } = this.props;
     return(
       <div>
-        <div className={styles.scene} style={{ cursor: isShiftDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
+        <div className={shifted ? styles.shifted : styles.scene} style={{ cursor: isShiftDown ? 'move' : (brickHover ? 'pointer' : 'default') }} ref={(mount) => { this.mount = mount }} />
         <If cond={isDDown && mode === 'build'}>
           <Message>
             <i className="ion-trash-a" />

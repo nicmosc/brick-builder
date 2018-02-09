@@ -15,13 +15,10 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  z-index: 9;
   background: @primary-blue;
-  box-shadow: 0px 5px 12px 1px rgba(0,0,0,0.25);
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.15);
   transition: all @base-transition-time ease-in-out;
-
-  &:hover {
-    box-shadow: 7px 0px 15px 1px rgba(0,0,0,0.20);
-  }
 }
 
 
@@ -37,6 +34,11 @@
   }
 }
 
+
+:local(.rightSection) {
+  composes: section;
+  margin-left: auto;
+}
 
 
 :local(.title) {

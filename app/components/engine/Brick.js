@@ -10,7 +10,7 @@ const knobSize = 7;
 
 
 export default class Brick extends THREE.Mesh {
-  constructor(intersect, color, dimensions) {
+  constructor(intersect, color, dimensions, rotation, translation) {
     const cubeMaterial = new THREE.MeshStandardMaterial({
       color: CSSToHex(color),
       // specular: CSSToHex(shadeColor(color, -20)),
@@ -32,20 +32,29 @@ export default class Brick extends THREE.Mesh {
     this.position.divide( new THREE.Vector3(base, height, base) ).floor()
       .multiply( new THREE.Vector3(base, height, base) )
       .add( new THREE.Vector3( evenWidth ? base : base / 2, height / 2, evenDepth ? base : base / 2 ) );
+    this.rotation.y = rotation;
+    this.geometry.translate(translation, 0, translation);
     this.castShadow = true;
     this.receiveShadow = true;
     this.customId = v4();
     this.defaultColor = cubeMaterial.color;
+
+    this._intersect = intersect;
+    this._color = color;
+    this._dimensions = dimensions;
+    this._rotation = rotation;
+    this._translation = translation;
   }
 
   updateColor(color) {
     this.material.setValues({ color: CSSToHex(color) });
     this.defaultColor = this.material.color;
+    this._color = color;
   }
 
-  rotate(rotation) {
-    this.rotateY(degToRad(rotation));
-  }
+  // rotate(rotation) {
+  //   this.rotateY(degToRad(rotation));
+  // }
 }
 
 

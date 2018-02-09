@@ -64,9 +64,10 @@ class Help extends React.Component {
 
   render() {
     const { open } = this.state;
+    const { inversed } = this.props;
     return (
       <div className={styles.help}>
-        <div className={styles.text} onClick={this._toggleHelp}>
+        <div className={inversed ? styles.inversed : styles.text} onClick={this._toggleHelp}>
           <i className="ion-information-circled" />
           <span>Help</span>
         </div>
