@@ -2,6 +2,11 @@
 
 Demo: https://nicmosc.github.io/brick-builder/
 
+![screenshot](/examples/screenshot.png "Screenshot")
+
+## What is this?
+Brick Builder is a simple web app to create brick objects (heavily inspired by Lego in fact). You can also import and export models from the menu! To get started you can download the example models in the `examples` folder and import them in the demo.
+
 ### Usage
 Install with
 ```
