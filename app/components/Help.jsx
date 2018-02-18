@@ -24,7 +24,7 @@ const HelpModal = ({ open, toggleClose }) => {
           <div className={styles.icon}>
             <i className="ion-hammer" />
           </div>
-          <div style={{ flex: 1 }}>In BUILD mode you can place bricks with a <strong>LEFT</strong> click. If you press <strong>d</strong> at the same time you delete bricks. Choose between different sizes in the menu bar.</div>
+          <div style={{ flex: 1 }}>In BUILD mode you can place bricks with a <strong>LEFT</strong> click. Choose between different sizes in the menu bar. <br/> If you press <strong>D</strong> at the same time you delete bricks. <br/>If you press <strong>R</strong> you can rotate bricks.</div>
         </div>
         <div className={styles.section}>
           <div className={styles.icon}>
