@@ -33,3 +33,4 @@ yarn build
 - [x] Show/hide grid
 - [ ] Control UI (rotate, drag)
 - [ ] Save image
+- [ ] Generate public link to AR app (in the works)
