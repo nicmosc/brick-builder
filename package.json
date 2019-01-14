@@ -27,10 +27,10 @@
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
     "extract-loader": "^0.1.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
-    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-plugin": "^3.2.0",
     "if-only": "^2.0.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
@@ -45,8 +45,9 @@
     "redux": "^3.7.2",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
-    "webpack": "^3.5.4",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
     "autobind-decorator": "^2.1.0",

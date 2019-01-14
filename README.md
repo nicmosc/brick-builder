@@ -10,17 +10,17 @@ Brick Builder is a simple web app to create brick objects (heavily inspired by L
 ### Usage
 Install with
 ```
-yarn install
+npm install
 ```
 
 Develop with
 ```
-yarn dev
+npm run dev
 ```
 
 Build for production
 ```
-yarn build
+npm run build
 ```
 
 

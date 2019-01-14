@@ -7,7 +7,7 @@ export default function setupStore(initialState) {
   return createStore(
     reducer,
     initialState,
-    (window.devToolsExtension && process.env.NODE_ENV === 'development') ?
-      window.devToolsExtension() : f => f
+    (window.window.__REDUX_DEVTOOLS_EXTENSION__ && process.env.NODE_ENV === 'development') ?
+      window.window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
   );
 }
