@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf docs/",
-    "dev": "webpack-dev-server --progress --config webpack.dev.config.js",
-    "start": "",
+    "start": "webpack-dev-server --progress --config webpack.dev.config.js",
     "build": "npm run clean && webpack --progress --config webpack.config.js -p",
     "webpack": "webpack"
   },

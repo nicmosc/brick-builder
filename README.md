@@ -15,13 +15,19 @@ npm install
 
 Develop with
 ```
-npm run dev
+npm start
 ```
 
 Build for production
 ```
 npm run build
 ```
+
+Since this is built as a static SPA, to run it in production use any method you want, though the simplest is to run a python server locally:
+```
+python -m SimpleHTTPServer
+```
+which will serve the files. By default they will be at `http://localhost:8000`.
 
 
 ### To do
